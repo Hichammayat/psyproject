@@ -1,0 +1,41 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    
+    padding-right: 5rem;
+    
+}
+.header>img{
+    width: 10rem;
+    height: 5rem;
+}
+
+.header-menu{
+    list-style: none;
+    display: flex;
+    gap: 4rem;
+
+    color: black;
+    align-items: center;
+
+}
+.header-menu>li,a{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    transition: 300ms all;
+    
+}
+.header-menu>li:hover{
+    
+    color: rgb(214, 6, 145);
+    cursor: pointer;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+.header-menu>a:hover{
+    color: rgb(214, 6, 145);
+    cursor: pointer;
+    font-weight: bolder;
+    text-decoration: underline;
+}

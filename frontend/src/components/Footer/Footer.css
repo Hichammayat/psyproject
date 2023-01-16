@@ -1,0 +1,25 @@
+.Footer-container{
+    position: relative;
+}
+.Footer-container>hr{
+    border: 1px solid pink;
+}
+.footer{
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+}
+.social-links{
+    display: flex;
+    gap: 4rem;
+
+}
+.social-links{
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+}
