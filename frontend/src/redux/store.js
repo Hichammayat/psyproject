@@ -4,6 +4,7 @@ import QuestReducer from './Quest-reducer'
 import psyReducer from './psy-reducer'
 import messageReducer from './message-reducer'
 import BlogReducer from './Blog-reducer'
+import NotifReducer from'./notifyer'
 
 
 
@@ -18,6 +19,7 @@ const Store = configureStore({
         PsyInscription : psyReducer,
         Message : messageReducer,
         Blog : BlogReducer,
+        Notification : NotifReducer,
     }
 })
 

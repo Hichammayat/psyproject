@@ -8,6 +8,7 @@ import MessageModal from '../../../../Modals/MessageModals';
 import { newMessage } from '../../../../redux/message-reducer';
 
 import InputEmoji from 'react-input-emoji'
+import SideBarPsy from '../../SidebarPsy/SidebarPsy';
 
 
 
@@ -19,19 +20,17 @@ function ChatPsy() {
   <>
         
     <div className='chat-page'>
+    <SideBarPsy/>
     <div className="Left-side-chat">
-    <div className="LogoSearch">
-      
-      <div className="Search">
+    
+        
+        <div className="Chat-container">
+        <div className="Search">
           <input type="text" placeholder="#Explore"/>
           <div className="s-icon">
           <ManageSearchIcon />
           </div>
       </div>
-    </div>
-        
-        <div className="Chat-container">
-          <h2>Chats</h2>
           <div className="Chat-list">
            
               <div>
@@ -48,7 +47,7 @@ function ChatPsy() {
             {/* chat-header */}
             <div className="chat-header" style={{backgroundColor:"black",color:"white"}}>
               <div className="follower">
-                <div classname="header-name"  style={{display:"flex",flexDirection:"row",alignItems:"center",gap:"3rem"}}>
+                <div classname="header-name" style={{display:"flex",flexDirection:"row",alignItems:"center",gap:"3rem"}}>
                   <img
                     src="DSC_2342.jpg"
                     alt="Profile"
@@ -89,7 +88,7 @@ function ChatPsy() {
               <InputEmoji
                /* onChange={(e) => setMessage({...message, text : e.target.value})}*/
               />
-              <SendIcon style={{color:"white"}}  onClick={() =>dispatch(newMessage())}/>
+              <SendIcon style={{color:"white"}} onClick={() =>dispatch(newMessage())}/>
               <AttachFileIcon style={{color:"white"}}
                 type="file"
                 name=""
@@ -100,8 +99,8 @@ function ChatPsy() {
             </div>{" "}
           </>
          
-         
         
+     
       </div>
       </div>
     </>

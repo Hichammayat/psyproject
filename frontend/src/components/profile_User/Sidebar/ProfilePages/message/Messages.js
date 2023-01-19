@@ -4,8 +4,9 @@ import SendIcon from '@mui/icons-material/Send';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import{useDispatch} from'react-redux'
-import MessageModal from '../../../../Modals/MessageModals';
-import { newMessage } from '../../../../redux/message-reducer';
+import MessageModal from '../../../../../Modals/MessageModals';
+import { newMessage } from '../../../../../redux/message-reducer';
+import SideBar from '../../SideBar';
 
 import InputEmoji from 'react-input-emoji'
 
@@ -17,21 +18,20 @@ function Chat() {
     
     return (
   <>
-        
+    
+    <div className='chat-page'>
+    <SideBar/>
     <div className='chat-page'>
     <div className="Left-side-chat">
-    <div className="LogoSearch">
-      
-      <div className="Search">
+    
+        
+        <div className="Chat-container">
+        <div className="Search">
           <input type="text" placeholder="#Explore"/>
           <div className="s-icon">
           <ManageSearchIcon />
           </div>
       </div>
-    </div>
-        
-        <div className="Chat-container">
-          <h2>Chats</h2>
           <div className="Chat-list">
            
               <div>
@@ -99,11 +99,9 @@ function Chat() {
               />
             </div>{" "}
           </>
-         : 
-          <span className="chatbox-empty-message">
-            Tap on a chat to star conversation...
-          </span>
+         
         
+      </div>
       </div>
       </div>
     </>

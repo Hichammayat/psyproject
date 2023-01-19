@@ -1,8 +1,10 @@
 .main-container {
   display: flex;
 }
-main {
-  padding: 10px;
+.main {
+  
+  display: flex;
+  flex-direction: row;
 }
 
 .title {
@@ -68,8 +70,9 @@ main {
   }
   .link:hover {
     border-right: 4px solid white;
-    background: rgb(255, 106, 131);
+    background-color: black;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    color: white;
   }
   .active {
     border-right: 4px solid white;
@@ -100,4 +103,7 @@ main {
   .menu_container .link {
     padding-left: 20px;
     border-bottom: #fff 0.5px solid;
+  }
+  .video{
+    margin: auto;
   }

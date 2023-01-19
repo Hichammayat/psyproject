@@ -7,11 +7,15 @@
 .footer{
     padding: 1rem 2rem;
     display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    justify-content: center;
+    flex-direction: row;
+    gap: 15rem;
     align-items: center;
-    height: 20rem;
+    height: 10rem;
+    justify-content: flex-start;
+}
+.footer>img{
+    width: 20rem;
+    height: 13rem
 }
 .social-links{
     display: flex;

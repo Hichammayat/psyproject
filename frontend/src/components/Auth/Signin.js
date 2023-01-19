@@ -4,6 +4,7 @@ import{useDispatch,useSelector} from'react-redux'
 import {useNavigate} from "react-router-dom"
 import { checkUser } from '../../redux/auth-reducer'
 import { Link } from 'react-router-dom'
+import Footer from '../Footer/Footer'
 
 function Auth() {
   const navigate = useNavigate();
@@ -28,12 +29,14 @@ function Auth() {
 
 
   return (
+    <>
     <div className='auth'>
         <div className='a-left'>
           
             <div className='webname'>
-            <img src='salut.png' alt=''/>
-              
+            <video autoPlay loop muted playsInline className='video'>
+              <source src='salut (1).mp4'/>
+            </video>
             </div>
             
         </div>
@@ -83,7 +86,8 @@ function Auth() {
     
 </div>
     </div>
-    
+    <Footer/>
+    </>
   )
 }
 

@@ -9,6 +9,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SideBarMenu from "./SideBarMenu";
 import './SideBar.css'
+import Blog from "../../Blog/Blog";
 const routes = [
  /* {
     path: "/",
@@ -32,43 +33,6 @@ const routes = [
     icon: <AiOutlineUserAdd />,
   },
   {
-    path: "/file-manager",
-    name: "File Manager",
-    icon: <AiTwotoneFileExclamation />,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
-  },
-  
-  {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog />,
-    exact: true,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Assistance ",
-        icon: ""
-      },
-      
-    ],
-  },
-  {
     path: "/saved",
     name: "Saved",
     icon: <AiFillHeart />,
@@ -76,7 +40,7 @@ const routes = [
 ];
 
 const SideBar = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
     hidden: {
@@ -113,17 +77,13 @@ const SideBar = ({ children }) => {
   };
 
   return (
-    <>
-      <div className="main-container">
+    <div className="main">
+      <div className="main-container" style={{width:"230px"}}>
         <motion.div
           animate={{
-            width: isOpen ? "230px" : "45px",
+            width:  "230px" ,
 
-            transition: {
-              duration: 0.5,
-              type: "spring",
-              damping: 10,
-            },
+            
           }}
           className={`sidebar `}
         >
@@ -137,7 +97,7 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  DoSomeCoding
+                  SalutMonPsy
                 </motion.h1>
               )}
             </AnimatePresence>
@@ -203,9 +163,12 @@ const SideBar = ({ children }) => {
           </section>
         </motion.div>
 
-        <main>{children}</main>
+        
       </div>
-    </>
+      <video autoPlay loop muted playsInline className='video'>
+              <source src='salut (1).mp4'/>
+      </video>
+    </div>
   );
 };
 

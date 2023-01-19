@@ -20,7 +20,7 @@
     justify-content:  space-around;
     align-items: center;
     gap: 2rem;
-    background-color:white;
+    background-color:#3c3f45;
     border-radius: 1rem;
     padding: 1rem;
 
@@ -33,11 +33,7 @@
     align-items: center;
     justify-content: center;
   }
-.score-section {
-    display: flex;
-    font-size: 24px;
-    align-items: center;
-  }
+
   
   /* QUESTION/TIMER/LEFT SECTION */
   .question-section {
@@ -45,6 +41,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    height: -webkit-fill-available;
+    background-color: #3c3f45;
+    border-radius: 1rem 1rem 0 0;
+    color: white;
+    font-size: larger;
   }
   .question-count {
     margin-bottom: 20px;
@@ -59,8 +60,9 @@
   }
   
   .answer-div{
-    height: 100%;
-    ;
+    height: -webkit-fill-available;
+    border-radius:  0 0 1rem 1rem;
+    background-color: #ff00aa;
   }
   .answer-section{
     display: flex;
@@ -69,9 +71,9 @@
     width: 100%;
     
     padding: 10px;
-    border: solid gray;
+    
     border-radius: 5px;
-    background-color: gray;
+    
 
   }
   .answer-div>textarea{
@@ -89,4 +91,8 @@
 }
   .answer-div>.btn{
     flex: 1;
+  }
+  .score-section{
+    display: flex;
+    flex-direction: column;
   }

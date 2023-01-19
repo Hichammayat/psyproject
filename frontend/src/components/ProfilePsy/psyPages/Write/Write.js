@@ -6,21 +6,26 @@ import PostModals from '../../../../Modals/PostModals';
 import { useState } from "react";
 import { AddBlog } from '../../../../redux/Blog-reducer';
 import'./Write.css'
+import SideBarPsy from '../../SidebarPsy/SidebarPsy';
 
 const Write = () => {
     const dispatch = useDispatch()
     const getPsychiatreId = JSON.parse(localStorage.getItem('psychiatre'))
+    console.log(getPsychiatreId)
     const [newblog,setNewblog] =useState(new PostModals([],getPsychiatreId._id));
+    console.log(newblog)
   return (
     <div className='add'>
+        <SideBarPsy/>
         <div className='content'>
             <input type="text" placeholder='Title' onChange={(e) => setNewblog({...newblog, title : e.target.value})}/>
             <div className='editorContainer'>
             <ReactQuill
             className="editor"
             theme="snow"
+             value={newblog}
             
-            onChange={(e) => setNewblog({...newblog, desc: e.target.value})}
+            onChange={ setNewblog}
             />
             </div>
         </div>

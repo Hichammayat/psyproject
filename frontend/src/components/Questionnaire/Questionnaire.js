@@ -65,14 +65,18 @@ function Questionnaire () {
             <div className='question-form'>
 			{ThanksMsg ? (
 				<div className='score-section'>
+					<div className='question-section'>
 					<span>Merci pour vos reponses!
                     vous allez maintenent avoir acces a la liste de tout les psychologues disponibles je vous invites a faire votre choix
 					</span>
+					</div>
+					<div className='answer-section'>
 					<Link to="/SideBar">
 					<button className='btn' style={{backgroundColor:"black",color:"white"}}
 							    onClick={() =>dispatch(userAnswer({id:getUserId._id,Answer : question}))}>valider
 					</button>
 					</Link>
+					</div>
 				</div>
 			) : (
 				<>

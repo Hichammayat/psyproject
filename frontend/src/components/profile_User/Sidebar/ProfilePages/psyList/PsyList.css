@@ -18,6 +18,7 @@ background-color: #D9D9D9;
   .Profile {
     display: flex;
     gap: 100px;
+    width: 700px;
   }
     .Profile:nth-child(2n + 1) {
       flex-direction: row-reverse;

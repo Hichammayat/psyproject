@@ -9,10 +9,15 @@ export const checkPsy= createAsyncThunk("loginpsy/checkPsy",async({psyAccount})=
   
   .catch(err => {return err.data.message})
 })
+export const GetPsychiatreList = createAsyncThunk('Psy/GetPsychiatreList', async()=> {
+  return axios.get('http://localhost:9000/GetPsychiatres')
+  .then((res) => {return res.data})
+  .catch((err) => {console.error(err)})
+})
 const PsyApplySlice = createSlice({
     name: "PsyInscription",
     initialState :  {
-        psychiatre : {},
+        psychiatre : [],
          status: "",
          Erreur: "",
        },
@@ -38,7 +43,19 @@ const PsyApplySlice = createSlice({
         },
         [checkPsy.pending] : (state)=>{
             state.status = "Pending"
-        }
+        },
+        [GetPsychiatreList.fulfilled] : (state, action)=>{
+            state.psychiatre = action.payload;
+            console.log(action.payload)
+            state.status = "Success";
+        },
+        [GetPsychiatreList.rejected] : (state, action) =>{
+          state.Erreur = action.payload
+          state.status = "Rejected"
+        },
+        [GetPsychiatreList.pending] : (state) =>{
+           state.status = "Pending"
+        },
     }
   });
 

@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
+import { FaBars,FaUser } from "react-icons/fa";
 import { MdMessage,MdPostAdd } from "react-icons/md";
 import {  BiSearch } from "react-icons/bi";
-import { BiCog } from "react-icons/bi";
-import { AiFillHeart, AiTwotoneFileExclamation,AiOutlineUserAdd} from "react-icons/ai";
+
+import { AiFillHeart} from "react-icons/ai";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SideMenuPsy from "./SideMenuPsy";
@@ -36,41 +37,14 @@ const routes = [
     icon: <DynamicFeedIcon />,
   },
   {
-    path: "/file-manager",
-    name: "File Manager",
-    icon: <AiTwotoneFileExclamation />,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
+    path: "/Request",
+    name: "nouvelle demande",
+    icon: <NotificationsNoneIcon />,
   },
-  
   {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog />,
-    exact: true,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Assistance ",
-        icon: ""
-      },
-      
-    ],
+    path: "/setting",
+    name: "Profile ",
+    icon: <FaUser />,
   },
   {
     path: "/saved",
@@ -80,7 +54,7 @@ const routes = [
 ];
 
 const SideBarPsy = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
     hidden: {
@@ -118,16 +92,12 @@ const SideBarPsy = ({ children }) => {
 
   return (
     <>
-      <div className="main-container">
+      <div className="main-container" style={{width:"230px"}}>
         <motion.div
           animate={{
-            width: isOpen ? "230px" : "45px",
+            width:  "230px" ,
 
-            transition: {
-              duration: 0.5,
-              type: "spring",
-              damping: 10,
-            },
+            
           }}
           className={`sidebar `}
         >
@@ -207,7 +177,7 @@ const SideBarPsy = ({ children }) => {
           </section>
         </motion.div>
 
-        <main>{children}</main>
+        
       </div>
     </>
   );

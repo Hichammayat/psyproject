@@ -39,7 +39,21 @@ exports.loginPsy = async (req, res) =>{
         console.error(err.message)
     }
 }
+exports.GetPsychiatres= async (req, res) => {
+    try {
+        let psychiatres = await PsychiatreModel.find({});
+    if (psychiatres) {
+      res.send(psychiatres);
+    } else {
+      console.log("No psychiatres in DB");
+    }
+  }
+        
+     catch (error) {
+       console.log(error) 
+    }
 
+}
 
 
 exports.getCv = async (req, res) =>{

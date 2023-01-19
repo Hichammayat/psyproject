@@ -22,7 +22,9 @@ function Authsec() {
         <div className='a-left'>
           
             <div className='webname'>
-            <img src='salut.png' alt=''/>
+            <video autoPlay loop muted playsInline className='video'>
+              <source src='salut (1).mp4'/>
+            </video>
             </div>
             
         </div>

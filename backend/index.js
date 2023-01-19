@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth");
 const questionnaireRouter = require("./routes/questionnaire")
 const psychiatreRouter = require("./routes/psychiatre")
 const PostRouter = require("./routes/Post")
+const NotifRouter = require("./routes/notifyer")
 
 
 
@@ -24,3 +25,4 @@ app.use(authRouter)
 app.use(questionnaireRouter)
 app.use(psychiatreRouter)
 app.use(PostRouter)
+app.use(NotifRouter)

@@ -1,5 +1,5 @@
-const {mongoose } = require('mongoose')
-const db = require('mongoose')
+const {mongoose}  = require('mongoose')
+const db =require('mongoose')
 
 const NotifyerModel = db.Schema({
     notif_from_user : {
@@ -11,6 +11,12 @@ const NotifyerModel = db.Schema({
         type: String,
         ref: 'psychiatres',
         required: true
+    },
+    client_FirstName:{
+        type:String
+    },
+    client_LastName:{
+        type:String
     },
     
 })
