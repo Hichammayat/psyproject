@@ -29,16 +29,16 @@ import Setting from './components/ProfilePsy/psyPages/setting/setting';
 
 function App() {
   return (
-    <>
+    
     <div className="App">
     <BrowserRouter>
-    
+     <SideBarPsy/>
      <Routes>
       <Route path="/" element={<Main/>} />
       <Route path="/Header" element={<Header/>} />
       <Route path="/Blog" element={<Blog/>} />
       <Route path="/SinglePost" element={<SinglePost/>} />
-      <Route path="/Write" element={<Write/>} />
+      
       <Route path="/Signin" element={<Signin/>} />
       <Route path="/Signup" element={<Signup/>} />
       <Route path="/PsyInscription" element={<PsyInscription/>} />
@@ -46,16 +46,22 @@ function App() {
       <Route path="/Questionnaire" element={<Questionnaire/>} />
       <Route path="/Hellopage" element={<Hellopage/>} />
       <Route path="/SideBar" element={<SideBar/>} />
-      <Route path="/SideBarPsy" element={<SideBarPsy/>} />
       <Route path="/Chat" element={<Chat/>} />
-      <Route path="/ChatPsy" element={<ChatPsy/>} />
       <Route path="/PsyList" element={<PsyList/>} />
+      
+      
+      <Route path="/Write" element={<Write/>} />
+      <Route path="/ChatPsy" element={<ChatPsy/>} />
       <Route path="/Request" element={<Request/>} />
       <Route path="/Setting" element={<Setting/>} />
+      
+      
      </Routes>
+     
+   
     </BrowserRouter>
     </div>
-    </>
+    
   );
 }
 

@@ -19,8 +19,8 @@ function ChatPsy() {
     return (
   <>
         
-    <div className='chat-page'>
-    <SideBarPsy/>
+    
+    
     <div className="Left-side-chat">
     
         
@@ -102,7 +102,7 @@ function ChatPsy() {
         
      
       </div>
-      </div>
+      
     </>
     )
 }

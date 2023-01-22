@@ -23,7 +23,7 @@
   
   height: auto;
   min-height: 100vh;
-  overflow: scroll;
+  
 }
 
 .Chat-list {
@@ -33,7 +33,7 @@
 }
 .ChatBox-container {
   
-  border-radius: 1rem;
+  
   display: grid;
   grid-template-rows: 15vh 70vh 15vh;
   width: 100%;
@@ -94,7 +94,7 @@ background: linear-gradient(98.63deg, #24e4f0 0%, #358ff9 100%);
   align-items: center;
   gap: 1rem;
   padding: 0.8rem;
-  border-radius: 1rem;
+  border-radius: 1rem 1rem 0 0;
   align-self: end;
   
 }

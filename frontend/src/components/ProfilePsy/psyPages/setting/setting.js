@@ -10,14 +10,15 @@ export default function Setting() {
           <span className="settingsTitleDelete">Delete Account</span>
         </div>
         <form className="settingsForm">
-          <label>Profile Picture</label>
-          <div className="settingsPP">
+        <div className="settingsPP">
+          
+          
             <img
               src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
               alt=""
             />
             <label htmlFor="fileInput">
-              <i className="settingsPPIcon far fa-user-circle"></i>{" "}
+              update your profile picture
             </label>
             <input
               id="fileInput"
@@ -26,14 +27,24 @@ export default function Setting() {
               className="settingsPPInput"
             />
           </div>
+          <div className="divInput">
+          <div className="div1">
           <label>firstname</label>
-          <input type="text" placeholder="Safak" name="Firstname" />
+          <input type="text" placeholder="Hicham" name="Firstname" />
           <label>lastname</label>
-          <input type="text" placeholder="Safak" name="Lstname" />
+          <input type="text" placeholder="Mayat" name="Lstname" />
           <label>Email</label>
-          <input type="email" placeholder="safak@gmail.com" name="email" />
+          <input type="email" placeholder="hicham@gmail.com" name="email" />
+          </div>
+          <div className="div2">
           <label>Password</label>
           <input type="password" placeholder="Password" name="password" />
+          <label>occupation</label>
+          <input type="text" placeholder="psychologue" name="occupation" />
+          <label>description</label>
+          <input type="text" placeholder="" name="description" />
+          </div>
+          </div>
           <button className="settingsSubmitButton" type="submit">
             Update
           </button>

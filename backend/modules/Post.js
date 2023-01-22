@@ -22,11 +22,8 @@ const PostSchema =  mongoose.Schema(
     },
     liked:{
       type: Boolean,
-      required: true
-      
-    
-   
-  },
+      required: false
+   },
 
     
   },

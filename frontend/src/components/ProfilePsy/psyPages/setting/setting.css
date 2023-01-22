@@ -1,6 +1,9 @@
 .settings {
-    display: flex;
-  }
+  display: flex;
+  width: 100%;
+  padding: 0 40px;
+  
+}
   
   .settingsWrapper {
     flex: 9;
@@ -28,6 +31,10 @@
   .settingsForm {
     display: flex;
     flex-direction: column;
+    gap: 50px;
+    background-color: white;
+    border-radius: 5rem;
+    padding: 10px;
   }
   
   .settingsPP {
@@ -35,6 +42,8 @@
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    justify-content: center;
+    gap: 10px
   }
   
   .settingsPP > img {
@@ -57,6 +66,39 @@
     color: white;
     background-color: lightcoral;
     cursor: pointer;
+  }
+  .div1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .div1>input{
+    height: 30px;
+    border-radius: 3rem;
+  }
+  .div2{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .div2>input{
+    height: 30px;
+    border-radius: 3rem;
+  }
+  .divInput{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .div1>label{
+    font-weight: bold;
+  }
+  .div2>label{
+    font-weight: bold;
+  }
+  .divInput::placeholder{
+    align-items: center;
   }
   
   .settingsPPButton:focus {

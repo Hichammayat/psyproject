@@ -2,7 +2,10 @@
   display: flex;
 }
 main {
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 1065px;
+  height: 100vh;
 }
 
 .title {
@@ -15,6 +18,7 @@ main {
     color: rgb(0, 0, 0);
     height: 100vh;
     overflow-y: auto;
+    width: 256px;
     
   }
   

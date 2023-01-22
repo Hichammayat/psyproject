@@ -39,7 +39,7 @@ const routes = [
   },
 ];
 
-const SideBar = ({ children }) => {
+const SideBar = ({ children }) =>{
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
@@ -77,11 +77,11 @@ const SideBar = ({ children }) => {
   };
 
   return (
-    <div className="main">
-      <div className="main-container" style={{width:"230px"}}>
+    <>
+      <div className="main-container" >
         <motion.div
           animate={{
-            width:  "230px" ,
+            width:  "256px" ,
 
             
           }}
@@ -97,7 +97,7 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  SalutMonPsy
+                  Salut Mon Psy
                 </motion.h1>
               )}
             </AnimatePresence>
@@ -162,13 +162,11 @@ const SideBar = ({ children }) => {
             })}
           </section>
         </motion.div>
+        <main>{children}</main>
 
         
       </div>
-      <video autoPlay loop muted playsInline className='video'>
-              <source src='salut (1).mp4'/>
-      </video>
-    </div>
+    </>
   );
 };
 

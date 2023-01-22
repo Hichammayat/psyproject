@@ -23,7 +23,7 @@
     
     height: auto;
     min-height: 100vh;
-    overflow: scroll;
+    
   }
   
   .Chat-list {
@@ -94,7 +94,7 @@
     align-items: center;
     gap: 1rem;
     padding: 0.8rem;
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 0 0;
     align-self: end;
     
   }

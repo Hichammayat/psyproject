@@ -6,7 +6,7 @@ import PostModals from '../../../../Modals/PostModals';
 import { useState } from "react";
 import { AddBlog } from '../../../../redux/Blog-reducer';
 import'./Write.css'
-import SideBarPsy from '../../SidebarPsy/SidebarPsy';
+
 
 const Write = () => {
     const dispatch = useDispatch()
@@ -16,16 +16,15 @@ const Write = () => {
     console.log(newblog)
   return (
     <div className='add'>
-        <SideBarPsy/>
+        
         <div className='content'>
             <input type="text" placeholder='Title' onChange={(e) => setNewblog({...newblog, title : e.target.value})}/>
             <div className='editorContainer'>
-            <ReactQuill
+            <textarea
             className="editor"
-            theme="snow"
-             value={newblog}
-            
-            onChange={ setNewblog}
+            placeholder="Tell your story..."
+            type="text"
+            onChange={(e)=> setNewblog({...newblog, desc : e.target.value})}
             />
             </div>
         </div>

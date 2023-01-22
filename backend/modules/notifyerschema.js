@@ -2,24 +2,24 @@ const {mongoose}  = require('mongoose')
 const db =require('mongoose')
 
 const NotifyerModel = db.Schema({
-    notif_from_user : {
-        type: String,
-        ref: 'users',
+    user_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "users",
         required: true
     },
-    notif_to_psychiatre : {
-        type: String,
-        ref: 'psychiatres',
+    psychiatre_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "psychiatres",
         required: true
     },
-    client_FirstName:{
-        type:String
-    },
-    client_LastName:{
-        type:String
-    },
-    
-})
+    read:{
+        type: Boolean,
+        required: true,
+    }
+},
+{
+    timestamps: true,
+  })
 
 
 const NotifyerDBModel = mongoose.model('notifications', NotifyerModel)

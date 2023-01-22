@@ -17,8 +17,8 @@ const routes = [
     icon: <FaHome />,
   },*/
   {
-    path: "/information",
-    name: "Mes information",
+    path: "/setting",
+    name: "Profile ",
     icon: <FaUser />,
   },
   {
@@ -41,11 +41,7 @@ const routes = [
     name: "nouvelle demande",
     icon: <NotificationsNoneIcon />,
   },
-  {
-    path: "/setting",
-    name: "Profile ",
-    icon: <FaUser />,
-  },
+  
   {
     path: "/saved",
     name: "Saved",
@@ -53,7 +49,7 @@ const routes = [
   },
 ];
 
-const SideBarPsy = ({ children }) => {
+const SideBarPsy = (props) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
@@ -92,10 +88,10 @@ const SideBarPsy = ({ children }) => {
 
   return (
     <>
-      <div className="main-container" style={{width:"230px"}}>
+      <div className="main-container" >
         <motion.div
           animate={{
-            width:  "230px" ,
+            width:  "256px" ,
 
             
           }}
@@ -111,7 +107,7 @@ const SideBarPsy = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  DoSomeCoding
+                  Salut Mon Psy
                 </motion.h1>
               )}
             </AnimatePresence>
@@ -175,7 +171,9 @@ const SideBarPsy = ({ children }) => {
               );
             })}
           </section>
+          
         </motion.div>
+        <main>{props.children}</main>
 
         
       </div>

@@ -15,10 +15,6 @@ function Header() {
             <li>Blog</li>
             </Link>
             <li>FAQ</li>
-            <Link to="/Write">
-            <li>Write</li>
-            </Link>
-        
         </ul>
     </div>
   )
