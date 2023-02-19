@@ -1,4 +1,10 @@
-const NotifyerDBModel = require("../modules/notifyerschema")
+const NotifyerDBModel = require("../modules/notifyerschema");
+const UserModel = require("../modules/userschema");
+
+
+
+
+
 
 exports.sendNotif= async (req,res)=>{
     const newNotif = req.body
@@ -11,12 +17,20 @@ exports.sendNotif= async (req,res)=>{
         console.log(error)
     }
 }
-exports.getNotif= async (req,res)=>{
-    const id =req.params.psychiatre_id
-    console.log("one")
-    try{
-        const NotifId = await NotifyerDBModel.find({notif_to_psychiatre : id})
-        console.log(NotifId)
-            res.send(NotifId)
-        }catch(err){console.log(err.message)}
-}
+exports.getNotif = async (req, res) => {
+    const id = req.params.psychiatre_id;
+    console.log("one");
+    try {
+      const notifId = await NotifyerDBModel.find({ psychiatre_id: id });
+      const userIds = notifId.map((notif) => notif.user_id); // Get all user ids from notifIds
+  
+      const userInfo = await UserModel.find({ _id: { $in: userIds } }); // Find all users with the ids
+  
+      res.send({ notifications: notifId, users: userInfo }); // Send both notifIds and user info in one response
+      console.log(notifId, userInfo);
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send("Internal server error");
+    }
+  };
+

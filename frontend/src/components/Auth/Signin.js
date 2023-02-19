@@ -4,27 +4,49 @@ import{useDispatch,useSelector} from'react-redux'
 import {useNavigate} from "react-router-dom"
 import { checkUser } from '../../redux/auth-reducer'
 import { Link } from 'react-router-dom'
+import { checkUserId} from '../../redux/Quest-reducer'
 import Footer from '../Footer/Footer'
 
-function Auth() {
-  const navigate = useNavigate();
-
-  const Err = useSelector(state => state.Auth.Erreur)
-  const dispatch = useDispatch()
+function Auth(props) {
+const navigate = useNavigate();
+const handleNavigation = props.handleNavigation
+ 
+const Err = useSelector(state => state.Auth.Erreur)
+const dispatch = useDispatch()
     const [signin, setSignin] = useState({
       Email:"",
       Password:""
     });
-    const Signin = () => {
+const Signin = () => {
+  dispatch(checkUser({userAccount :signin })).then(
+    res => {
+      console.log(res.payload._id)
+      if (typeof res.payload === 'object') {
+        handleNavigation("user")
+        
+        dispatch(checkUserId(res.payload._id) )
+        .then(
+         res => {
+          console.log(res.payload)
+            if (typeof res.payload === 'object')
+             navigate('/Information');
+            else navigate('/Hellopage');
+          }
+        )
+      }
+    }
+  )
+};
+/*const Signin = () => {
       
-      dispatch(checkUser({userAccount :signin })).then(
-        res =>{
-          console.log(res)
+  dispatch(checkUser({userAccount :signin })).then(
+      res =>{
+        console.log(res)
 
-          if(typeof res.payload === 'object') navigate('/Hellopage')
-        }
-      )
-     };
+        if(typeof res.payload === 'object') navigate('/Information')
+      }
+    )
+   };*/
 
 
 
@@ -61,7 +83,7 @@ function Auth() {
             type="password"
             className='infoinput'
             name='password'
-            placeholder='Password'
+            placeholder='Mot de pass'
             onChange={(e) => {
               setSignin({ ...signin,Password: e.target.value });
             }}
@@ -71,7 +93,7 @@ function Auth() {
         </div>
         <div>
             <Link to="/Signup">
-            <span className='span-form' style={{color:"white"}} >Don't have an account Sign up</span>
+            <span className='span-form' style={{color:"white"}} >Vous n'avez pas de compte? Inscrivez-vous.</span>
             </Link>
         </div>
         
@@ -79,7 +101,7 @@ function Auth() {
         onClick={() => {
           Signin()
          }}
-        className=' infoButton'>Login</button>
+        className=' infoButton'>se connecter</button>
         
 
     </div>

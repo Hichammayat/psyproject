@@ -54,6 +54,7 @@
   }
   .item>h1{
     font-size: 20px;
+    color: black;
   }
   .file{
     text-decoration: underline;

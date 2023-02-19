@@ -14,3 +14,19 @@ exports.Questionnaire= async (req, res) =>{
         
 
     }catch(err) {console.error(err)}}
+
+exports.checkAnswer = async (req, res) => {
+        const userId = req.params.id
+        console.log(req.params.id)
+        try {
+          const answer = await AnswerModel.findOne({ user_id: userId });
+          if (answer) {
+            res.send(answer);
+          } else {
+            res.send(false);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      };
+    

@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 
 const PsyInscription = () => {
   const [fileCv,setFileCv] = useState()
-  const [apply,setApply] =useState(new PsyApplyModal())
+  const [apply,setApply] =useState(new PsyApplyModal());
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   
 const getCv=()=>{
     const file =new FormData()
@@ -18,26 +20,36 @@ const getCv=()=>{
     .catch(err => {return err})
   }
 const newPsy=()=>{
-    
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const passwordRegex = /^(?=.*[A-Z])[a-zA-Z\d]{6,}$/;
+  if (!emailRegex.test(apply.Email)) {
+    setEmailError("Email n'est pas valide");
+  } else if (!passwordRegex.test(apply.Password)) { 
+    setPasswordError('Le mot de passe doit comporter au moins 6 caractères et une majuscule');
+  }else {
+    setEmailError('');
+    setPasswordError('');
     axios.post('http://localhost:9000/postuler',apply)
     .then(res =>{getCv()})
     .catch(err => {return err})
+  }
+    
 };
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+
   return (
     <div className='PsyInscription'>
-       <form onSubmit={(e=>{handleSubmit(e)})} className="info-Form" >
+       <div  className="info-Form" >
         <h3 style={{color:"white"}}>postuler ma candidature</h3>
+        {emailError && <div className="error"style={{color:'red'}}>{emailError}</div>}
+         {passwordError && <div className="error" style={{color:"red"}}>{passwordError}</div>}
         <div>
           <input
             onChange={(e) => {
               setApply({ ...apply, Firstname: e.target.value });
             }}
             type="text"
-            placeholder="First Name"
+            placeholder="Prenom"
             name="firstname"
             className="infoinput"
           />
@@ -46,7 +58,7 @@ const handleSubmit = (e) => {
               setApply({ ...apply, Lastname: e.target.value });
             }}
             type="text"
-            placeholder="Last Name"
+            placeholder="Nom"
             name="lastname"
             className="infoinput"
           />
@@ -71,7 +83,7 @@ const handleSubmit = (e) => {
          type="Password"
          className='infoinput'
          name='password'
-         placeholder='Password'
+         placeholder='Mot de pass'
          />
          
 
@@ -80,7 +92,7 @@ const handleSubmit = (e) => {
         <div>
           <input
             type="text"
-            placeholder="Lives in"
+            placeholder="habite à"
             name="livesIn"
             className="infoinput"
             onChange={(e) => {
@@ -89,7 +101,7 @@ const handleSubmit = (e) => {
           />
           <input
             type="text"
-            placeholder="Country"
+            placeholder="Pays"
             name="country"
             className="infoinput"
             onChange={(e) => {
@@ -110,7 +122,7 @@ const handleSubmit = (e) => {
         </div>
         <div>
             <Link to="/LoginPsy">
-             <span className='span-form' style={{color:"white"}} >Already have an account. Login!</span>
+             <span className='span-form' style={{color:"white"}} >Vous avez déjà un compte? Connectez-vous</span>
              </Link>
          </div>
 
@@ -118,9 +130,9 @@ const handleSubmit = (e) => {
           className="button infoButton"
           type="submit"
           onClick={()=>newPsy()} >
-          apply
+          Postuler
         </button>
-      </form>
+      </div>
     </div>
   )
 }

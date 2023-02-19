@@ -1,34 +1,40 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import"./PsyList.css"
-import Footer from '../../../../Footer/Footer'
+import NotificationModal from '../../../../../Modals/Notification'
 import {useDispatch, useSelector} from "react-redux"
 import { GetPsychiatreList } from '../../../../../redux/psy-reducer'
 import { SendNotif } from '../../../../../redux/notifyer'
-import SideBar from '../../SideBar'
+
 const PsyList = () => {
   const dispatch = useDispatch()
-
+  const getUserId = JSON.parse(localStorage.getItem('user'))
     useEffect(() =>{
     dispatch(GetPsychiatreList())
     },[])
 
 const psychiatreList = useSelector(state => state.PsyInscription.psychiatre)
+const [newNotif,setNewNotif] = useState()
 console.log(psychiatreList)
   return (
     <>
-    <SideBar/>
+    
     <div className="List-profile">
       <div className="Profils">
       {
         psychiatreList.map(item =>( 
-          <div className="Profile" >
+          <div className="Profile" key={item._id} >
             <div className="img">
-              <img src="DSC_2342.jpg" alt="" />
+              <img src="profile pic.png"  alt="" />
             </div>
             <div className="Profile-content">
-             <h1>{item.Firstname}</h1>
+             <h1>{item.Firstname}  {item.Lastname}</h1>
              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!</p>
-             <button onClick={dispatch(SendNotif)}>choisir ce psychologue</button>
+             <button
+             onClick={()=>{
+              setNewNotif(new NotificationModal(item._id,getUserId._id));
+              dispatch(SendNotif({Notif:newNotif}) )}}
+              /*onClick={()=>dispatch(SendNotif({user_id:getUserId._id,psychiatre_id:item._id}))}*/
+              >choisir ce psychologue</button>
             </div>
           </div>
           ))}

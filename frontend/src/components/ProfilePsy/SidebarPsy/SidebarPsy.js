@@ -6,10 +6,13 @@ import {  BiSearch } from "react-icons/bi";
 import { AiFillHeart} from "react-icons/ai";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SideMenuPsy from "./SideMenuPsy";
 import './SidebarPsy.css'
+import {useNavigate} from "react-router-dom"
+
 const routes = [
  /* {
     path: "/",
@@ -49,7 +52,8 @@ const routes = [
   },
 ];
 
-const SideBarPsy = (props) => {
+const SideBarPsy = ({children},props) => {
+  const handleNavigation = props.handleNavigation
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
@@ -84,6 +88,12 @@ const SideBarPsy = (props) => {
         duration: 0.5,
       },
     },
+  };
+  const navigate = useNavigate();
+  const signout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+    handleNavigation("")
   };
 
   return (
@@ -171,9 +181,17 @@ const SideBarPsy = (props) => {
               );
             })}
           </section>
+          <div className="logOut">
+            
+            <div className="icon"><LogoutIcon/></div>
+            <div className="logOut-btn" onClick={()=>signout()}>
+              Deconnecter
+              </div>
+            
+          </div>
           
         </motion.div>
-        <main>{props.children}</main>
+        <main>{children}</main>
 
         
       </div>

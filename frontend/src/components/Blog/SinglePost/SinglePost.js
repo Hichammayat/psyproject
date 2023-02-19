@@ -4,13 +4,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Menu from '../Menu/Menu';
+import { useParams } from 'react-router-dom';
+
 const SinglePost = () => {
+  
+  const { id } = useParams();
+  const post = post.find((post) => post.id === parseInt(id));
+  
 
    
   return (
     <div className="single">
       <div className="content">
-        <img src="https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+        <img src={post.img} alt="" />
         <div className="user">
           <img
             src="DSC_2342.jpg"
@@ -30,14 +36,8 @@ const SinglePost = () => {
             </div>
          
         </div>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit </h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!
-            <br/>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!
-            <br />
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!
-            <br />
-        </p>     
+        <h1>{post.title}</h1>
+        <p>{post.desc}</p>     
          </div>
       <Menu/>
     </div>

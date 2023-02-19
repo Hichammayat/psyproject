@@ -5,8 +5,9 @@ import {useNavigate} from "react-router-dom"
 import { checkPsy } from '../../redux/psy-reducer'
 import { Link } from 'react-router-dom'
 
-function LoginPsy() {
+function LoginPsy(props) {
   const navigate = useNavigate();
+  const handleNavigation = props.handleNavigation
 
   const Err = useSelector(state => state.PsyInscription.Erreur)
   const dispatch = useDispatch()
@@ -20,7 +21,9 @@ function LoginPsy() {
         res =>{
           console.log(res)
 
-          if(typeof res.payload === 'object') navigate('/SideBarPsy')
+          if(typeof res.payload === 'object') {
+            handleNavigation("psy");
+            navigate('/Write')}
         }
       )
      };
@@ -38,7 +41,7 @@ function LoginPsy() {
         </div>
         <div className='a-right'>
     <div className='info-form'>
-        <h3>Sign in</h3>
+        <h3>Se connecter</h3>
         <p className='Err'  style={{color:"red"}}>{Err}</p>
         <div>
             <input 
@@ -57,7 +60,7 @@ function LoginPsy() {
             type="password"
             className='infoinput'
             name='password'
-            placeholder='Password'
+            placeholder='Mot de pass'
             onChange={(e) => {
               setLogin({ ...login,Password: e.target.value });
             }}
@@ -71,7 +74,7 @@ function LoginPsy() {
         onClick={() => {
             LoginPsy()
          }}
-        className='btn infoButton'>Login</button>
+        className='btn infoButton'>Se connecter</button>
         
 
     </div>

@@ -13,9 +13,13 @@
     flex-direction: column;
 }
 .right-h{
-    flex: 1;
-    position: relative;
-    background-color: pink;
+   flex: 1;
+   position: relative;
+   
+}
+.right-h>video{
+   height: 100%;
+   width: 100%;
 }
 .the-best-ad{
     margin-top: 4rem;
@@ -82,17 +86,20 @@
     gap: 1rem;
     font-weight: normal;
  }
- .hero-buttons>:nth-child(1){
+ .btn1{
     color: black;
     background-color: #ff00aa;
     width: 8rem;
+    font-weight: bold;
  }
- .hero-buttons>:nth-child(1):hover{
+ .btn1:hover{
    color: #ff00aa;
    background-color: black;
    width: 8rem;
+   font-weight: bold;
 }
- .hero-buttons>a>button{
+
+/* .hero-buttons>a>button{
     color: black;
     background-color: transparent;
     width: 8rem;
@@ -103,4 +110,18 @@
    background-color: #ff00aa;
    width: 8rem;
    border: 2px solid black;
-}
+}*/
+@media only screen and (max-width: 768px) {
+   /* styles pour les écrans de taille inférieure à 768px */
+   .left-h {
+     padding: 1rem;
+     padding-top: 0.5rem;
+     flex: 1;
+   }
+   .right-h {
+     flex: 1;
+   }
+   .figures {
+     display: none;
+   }
+ }

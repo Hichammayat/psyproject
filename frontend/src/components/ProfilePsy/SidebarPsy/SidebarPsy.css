@@ -5,7 +5,7 @@ main {
   display: flex;
   flex-direction: row;
   width: 1065px;
-  height: 100vh;
+  
 }
 
 .title {
@@ -19,7 +19,8 @@ main {
     height: 100vh;
     overflow-y: auto;
     width: 256px;
-    
+    position: sticky;
+  top: 0;
   }
   
   .top_section {
@@ -32,6 +33,7 @@ main {
   .logo {
     font-size: 18px;
     line-height: 0;
+    color: black;
   }
   .bars {
     width: 30px;
@@ -72,12 +74,14 @@ main {
   }
   .link:hover {
     border-right: 4px solid white;
-    background: rgb(255, 106, 131);
+    background: black;
+    color: white;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   }
   .active {
     border-right: 4px solid white;
-    background: rgb(45, 51, 89);
+    background: black;
+    color: white;
   }
   .link_text {
     white-space: nowrap;
@@ -105,3 +109,21 @@ main {
     padding-left: 20px;
     border-bottom: #fff 0.5px solid;
   }
+  .logOut{
+    display: flex;
+    flex-direction: row;
+    padding: 10PX;
+    padding-top: 250px;
+    gap: 10px;
+  }
+  .logOut:hover{
+    cursor: pointer;
+    color: white;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .logOut-btn{
+    white-space: nowrap;
+    font-size: 15px;
+    
+  }
+  

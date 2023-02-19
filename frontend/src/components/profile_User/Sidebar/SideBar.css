@@ -18,6 +18,8 @@ main {
     height: 100vh;
     overflow-y: auto;
     width: 256px;
+    position: sticky;
+  top: 0;
     
   }
   
@@ -71,12 +73,13 @@ main {
   }
   .link:hover {
     border-right: 4px solid white;
-    background: rgb(255, 106, 131);
+    background: black;
+    color: white;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   }
   .active {
     border-right: 4px solid white;
-    background: rgb(45, 51, 89);
+    background: black;
   }
   .link_text {
     white-space: nowrap;

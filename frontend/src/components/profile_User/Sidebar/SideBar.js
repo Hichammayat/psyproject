@@ -4,11 +4,12 @@ import { MdMessage,MdPostAdd } from "react-icons/md";
 import {  BiSearch } from "react-icons/bi";
 import { BiCog } from "react-icons/bi";
 import { AiFillHeart, AiTwotoneFileExclamation,AiOutlineUserAdd} from "react-icons/ai";
-
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SideBarMenu from "./SideBarMenu";
 import './SideBar.css'
+import {useNavigate} from "react-router-dom"
 import Blog from "../../Blog/Blog";
 const routes = [
  /* {
@@ -17,7 +18,7 @@ const routes = [
     icon: <FaHome />,
   },*/
   {
-    path: "/information",
+    path: "/Information",
     name: "Mes information",
     icon: <FaUser />,
   },
@@ -39,7 +40,8 @@ const routes = [
   },
 ];
 
-const SideBar = ({ children }) =>{
+const SideBar = ({ children },props) =>{
+  const handleNavigation = props.handleNavigation
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
@@ -74,6 +76,13 @@ const SideBar = ({ children }) =>{
         duration: 0.5,
       },
     },
+  };
+  const navigate = useNavigate();
+  const signout = () => {
+    
+    localStorage.clear();
+    window.location.href = '/';
+    handleNavigation("")
   };
 
   return (
@@ -161,6 +170,12 @@ const SideBar = ({ children }) =>{
               );
             })}
           </section>
+          <div className="logOut">
+            
+            <div className="icon"><LogoutIcon/></div>
+            <div className="link_text" onClick={()=>signout()}>Deconnecter</div>
+            
+          </div>
         </motion.div>
         <main>{children}</main>
 

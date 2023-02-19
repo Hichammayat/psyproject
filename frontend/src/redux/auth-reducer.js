@@ -7,6 +7,11 @@ export const checkUser= createAsyncThunk("Auth/checkUser",async({userAccount})=>
     
     .catch(err => {return err.data.message})
 })
+export const GetUserInfo = createAsyncThunk("Notification/GetUserInfo",async({id})=>{
+  return axios.post(`http://localhost:9000/GetUserInfo${id}`)
+  .then(res => {return res.data})
+  .catch(err => {return err.data.message})
+})
 
 const SigninSlice = createSlice({
     name: 'Auth',
@@ -15,7 +20,9 @@ const SigninSlice = createSlice({
         status: "",
         Erreur: "",
       },
-    reducers:{},
+    reducers:{
+      
+    },
     extraReducers: {
         [checkUser.fulfilled]: (state, action) => {
           console.log(action.payload)
@@ -25,7 +32,7 @@ const SigninSlice = createSlice({
          }else {
             state.user= action.payload
             localStorage.setItem("user", JSON.stringify(action.payload))
-
+            localStorage.setItem("userType", "user");
           };
           state.status = "Success";
         },
@@ -35,6 +42,18 @@ const SigninSlice = createSlice({
         },
         [checkUser.pending] : (state)=>{
             state.status = "Pending"
-        }
+        },
+        [GetUserInfo.fulfilled] : (state, action)=>{
+          console.log(action.payload)
+            state.Notification = action.payload;
+            state.status = "Success";
+        },
+        [GetUserInfo.rejected] : (state, action) =>{
+          state.Erreur = action.payload
+          state.status = "Rejected"
+        },
+        [GetUserInfo.pending] : (state) =>{
+           state.status = "Pending"
+        },
 }})
 export default SigninSlice.reducer;

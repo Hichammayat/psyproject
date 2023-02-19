@@ -10,10 +10,23 @@ import { Link } from 'react-router-dom'
 
 function Authsec() {
   const [signup, setSignup] = useState(new SignupModal());
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   const newAccount=()=>{
-    axios.post('http://localhost:9000/register',signup)
-    .then(res =>{return res.data})
-    .catch(err => {return err})
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const passwordRegex = /^(?=.*[A-Z])[a-zA-Z\d]{6,}$/;
+    if (!emailRegex.test(signup.Email)) {
+      setEmailError("Email n'est pas valide");
+    } else if (!passwordRegex.test(signup.Password)) { 
+      setPasswordError('Le mot de passe doit comporter au moins 6 caractères et une majuscule');
+    }else {
+      setEmailError('');
+      setPasswordError('');
+      axios.post('http://localhost:9000/register',signup)
+      .then(res =>{return res.data})
+      .catch(err => {return err});
+    }
 };
 
   return (
@@ -30,7 +43,9 @@ function Authsec() {
         </div>
         <div className='a-right'>
      <div className='info-form'>
-         <h3>Sign up</h3>
+         <h3>S'enregistrer</h3>
+         {emailError && <div className="error"style={{color:'red'}}>{emailError}</div>}
+         {passwordError && <div className="error" style={{color:"red"}}>{passwordError}</div>}
          <div>
          <input 
           onChange={(e) => {
@@ -59,18 +74,19 @@ function Authsec() {
          name='Email'
          placeholder='Email'
          />
-
+         
          </div>
          <div>
          <input 
          onChange={(e) => {
           setSignup({ ...signup, Password: e.target.value });
         }}
-         type="Password"
+         type="Password" 
          className='infoinput'
          name='password'
-         placeholder='Password'
+         placeholder='Mot de pass'
          />
+         
          
 
          </div>
@@ -97,12 +113,14 @@ function Authsec() {
          </div>
          <div>
             <Link to="/Signin">
-             <span className='span-form' style={{color:"white"}} >Already have an account. Login!</span>
+             <span className='span-form' style={{color:"white"}} >Vous avez déjà un compte? Connectez-vous</span>
              </Link>
          </div>
          <button onClick={() => {
              newAccount();
-            }} className=' infoButton'>Signup</button>
+             
+             
+            }} className=' infoButton'>S'inscrire</button>
 
          </div>
          </div>

@@ -20,7 +20,7 @@ function Chat() {
   <>
     
     <div className='chat-page'>
-    <SideBar/>
+    
     <div className='chat-page'>
     <div className="Left-side-chat">
     

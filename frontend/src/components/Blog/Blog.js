@@ -1,7 +1,8 @@
 import React from 'react'
 import'./Blog.css'
 import Footer from '../Footer/Footer';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import SinglePost from './SinglePost/SinglePost';
 
 
 const Blog = () => {
@@ -10,7 +11,7 @@ const Blog = () => {
            {
              id: 1,
              title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-             desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
+             desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
              img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
            },
            {
@@ -37,6 +38,8 @@ const Blog = () => {
     <div className="Blog">
       <div className="posts">
         {posts.map((post) => (
+          <>
+           
           <div className="post" key={post.id}>
             <div className="img">
               <img src={post.img} alt="" />
@@ -46,17 +49,19 @@ const Blog = () => {
                 <h1>{post.title}</h1>
               
               <p>{post.desc}</p>
-              <Link to="/SinglePost">
+              <Link to={`/post/${post.id}`}>
+              
               <button>Read More</button>
               </Link>
             </div>
           </div>
+          </>
         ))}
       </div>
     </div>
-    <Footer/>
+    
     </>
   )
-}
+};
 
 export default Blog

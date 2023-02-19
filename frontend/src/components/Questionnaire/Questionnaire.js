@@ -5,7 +5,8 @@ import {useDispatch} from "react-redux"
 import { userAnswer } from '../../redux/Quest-reducer';
 import { Link } from 'react-router-dom'
 
-function Questionnaire () {
+function Questionnaire (props) {
+	const handleNavigation = props.handleNavigation;
 	const dispatch = useDispatch()
 	const questions = [
 		{
@@ -71,9 +72,12 @@ function Questionnaire () {
 					</span>
 					</div>
 					<div className='answer-section'>
-					<Link to="/SideBar">
+					<Link to="/PsyList">
 					<button className='btn' style={{backgroundColor:"black",color:"white"}}
-							    onClick={() =>dispatch(userAnswer({id:getUserId._id,Answer : question}))}>valider
+							   onClick={() => {
+								dispatch(userAnswer({id:getUserId._id,Answer : question}));
+								handleNavigation("user");
+							  }}>valider
 					</button>
 					</Link>
 					</div>
@@ -88,7 +92,9 @@ function Questionnaire () {
 					</div>
                         <div className='answer-div'>
 					       <div className='answer-section'>
-					    	   <textarea style={{width:"100%",border:"none",borderRadius:"5px"}}
+					    	   <textarea
+							   value={handleAnswer} 
+							   style={{width:"100%",border:"none",borderRadius:"5px"}}
 							   onChange={(e) => {
 								setHandelAnswer(e.target.value);
 							     }}>
@@ -98,6 +104,7 @@ function Questionnaire () {
                                <button style={{backgroundColor:"black",color:"white"}} className='btn'
 							    onClick={(e) => {
 									setQuestion({...question, answer: [...question.answer,handleAnswer]});
+									setHandelAnswer('');
 									handleAnswerClick()
 									}}>valider</button>
 								

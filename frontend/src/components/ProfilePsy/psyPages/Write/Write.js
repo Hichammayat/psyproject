@@ -10,9 +10,9 @@ import'./Write.css'
 
 const Write = () => {
     const dispatch = useDispatch()
-    const getPsychiatreId = JSON.parse(localStorage.getItem('psychiatre'))
-    console.log(getPsychiatreId)
-    const [newblog,setNewblog] =useState(new PostModals([],getPsychiatreId._id));
+    const getPsychiatreId = JSON.parse(localStorage.getItem('user'))
+    console.log(getPsychiatreId._id);
+    const [newblog,setNewblog] =useState({...new PostModals(), psychiatre_id : getPsychiatreId._id});
     console.log(newblog)
   return (
     <div className='add'>
@@ -32,10 +32,10 @@ const Write = () => {
             <div className='item'>
                 <h1>Publish</h1>
                 <span>
-                    <b>Status:</b>Draft
+                    <b style={{color:"black"}}>Status:</b>Draft
                 </span>
                 <span>
-                    <b>Visibility:</b>Public
+                    <b style={{color:"black"}}>Visibility:</b>Public
                 </span>
                 <input style={{display:"none"}} type="file" id="file" name=""/>
                 <label htmlFor='file'>Upload Image</label>

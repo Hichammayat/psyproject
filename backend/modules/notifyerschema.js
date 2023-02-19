@@ -1,20 +1,21 @@
-const {mongoose}  = require('mongoose')
-const db =require('mongoose')
+const mongoose  = require('mongoose')
 
-const NotifyerModel = db.Schema({
-    user_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref : "users",
-        required: true
-    },
+
+const NotifyerModel = mongoose.Schema({
+    
     psychiatre_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref : "psychiatres",
         required: true
     },
+    user_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "users",
+        required: true
+    },
     read:{
         type: Boolean,
-        required: true,
+        
     }
 },
 {

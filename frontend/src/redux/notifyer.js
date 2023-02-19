@@ -6,14 +6,15 @@ export const getNotif = createAsyncThunk("Notification/getNotif", async({psychia
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
   })
-export const SendNotif = createAsyncThunk("Notification/SenNotif",async({user_id})=>{
-    return axios.post(`http://localhost:9000/SendNotif/${user_id}`)
+export const SendNotif = createAsyncThunk("Notification/SenNotif",async({Notif})=>{
+    return axios.post(`http://localhost:9000/SendNotif`,Notif)
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
 })
 
+
   const NotifSlice = createSlice({
-    name: "notifications",
+    name: "Notification",
     initialState :  {
         Notification : [],
          status: "",
@@ -22,8 +23,14 @@ export const SendNotif = createAsyncThunk("Notification/SenNotif",async({user_id
        extraReducers: {
         
         [getNotif.fulfilled] : (state, action)=>{
-            state.Notification = action.payload;
-            state.status = "Success";
+          
+          state.Notification = { 
+            notifications: action.payload.notifications, 
+            users: action.payload.users 
+          };
+          console.log(action.payload.notifications)
+          console.log(action.payload.users)
+          state.status = "Success";
         },
         [getNotif.rejected] : (state, action) =>{
           state.Erreur = action.payload
@@ -33,7 +40,7 @@ export const SendNotif = createAsyncThunk("Notification/SenNotif",async({user_id
            state.status = "Pending"
         },
         [SendNotif.fulfilled] : (state, action)=>{
-            state.Notification = action.payload;
+          state.Notification = [...state.Notification, action.payload];
             state.status = "Success";
         },
         [SendNotif.rejected] : (state, action) =>{
@@ -43,6 +50,7 @@ export const SendNotif = createAsyncThunk("Notification/SenNotif",async({user_id
         [SendNotif.pending] : (state) =>{
            state.status = "Pending"
         },
+        
     }
   });
 

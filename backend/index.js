@@ -8,6 +8,7 @@ const questionnaireRouter = require("./routes/questionnaire")
 const psychiatreRouter = require("./routes/psychiatre")
 const PostRouter = require("./routes/Post")
 const NotifRouter = require("./routes/notifyer")
+const conversationRouter = require("./routes/conversation")
 
 
 
@@ -26,3 +27,4 @@ app.use(questionnaireRouter)
 app.use(psychiatreRouter)
 app.use(PostRouter)
 app.use(NotifRouter)
+app.use(conversationRouter)

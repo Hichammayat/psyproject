@@ -29,7 +29,7 @@ function Hero() {
             
             </div>
             {/* hero figures*/ }
-            <div className='figures'>
+            {/*<div className='figures'>
               <div>
                 <span>+20</span>
                 <span>expert</span>
@@ -42,23 +42,24 @@ function Hero() {
                 <span>20</span>
                 <span>specialite</span>
               </div>
-            </div>
+            </div>}
             {/*hero buttons*/ }
             <div className='hero-buttons'>
-              <button className='btn'>Download</button>
+              {/*<button className='btn'>Download</button>*/}
               <Link to="/Signin">
-              <button className='btn'>Sign in</button>
+              <button className='btn1'>Se connecter</button>
               </Link>
 
             </div>
         </div>
         
-       {/* <div className='right-h'>
-          <Link to="/Auth">
-          <button className='btn'>Sign in</button>
-          </Link>
-          <img src='' alt=''></img>
-        </div>*/}
+        <div className='right-h'>
+          
+        <video style={{backgroundSize:"cover",backgroundRepeat:"no-repeat"}} autoPlay loop muted playsInline className='video'>
+              <source src='hero-section.mp4'/>
+            </video>
+      
+        </div>
 
     </div>
   )

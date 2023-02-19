@@ -7,10 +7,15 @@ export const userAnswer = createAsyncThunk("Questionnaire/userAnswer", async ({i
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
   })
+  export const checkUserId = createAsyncThunk("Questionnaire/checkUserId", async (id) =>{
+    return axios.post(`http://localhost:9000/checkAnswer/${id}` )
+    .then(res => {return res.data})
+    .catch(err => {return err.data.message})
+  })
   const AnswerSlice = createSlice({
     name: "Answers",
     initialState :  {
-        Answer : {},
+        Answer : {}, 
          status: "",
          Erreur: "",
        },
@@ -28,6 +33,18 @@ export const userAnswer = createAsyncThunk("Questionnaire/userAnswer", async ({i
         [userAnswer.pending] : (state) =>{
            state.status = "Pending"
         },
+        [checkUserId.fulfilled] : (state, action)=>{
+          console.log(action.payload);
+          state.Answer = action.payload;
+          state.status = "Success";
+      },
+      [checkUserId.rejected] : (state, action) =>{
+        state.Erreur = action.payload
+        state.status = "Rejected"
+      },
+      [checkUserId.pending] : (state) =>{
+         state.status = "Pending"
+      },
     }
   });
 

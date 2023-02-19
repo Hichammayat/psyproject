@@ -11,8 +11,8 @@ export const checkPsy= createAsyncThunk("loginpsy/checkPsy",async({psyAccount})=
 })
 export const GetPsychiatreList = createAsyncThunk('Psy/GetPsychiatreList', async()=> {
   return axios.get('http://localhost:9000/GetPsychiatres')
-  .then((res) => {return res.data})
-  .catch((err) => {console.error(err)})
+  .then(res => {return res.data})
+  .catch(err => {return err.data.message})
 })
 const PsyApplySlice = createSlice({
     name: "PsyInscription",
@@ -32,9 +32,9 @@ const PsyApplySlice = createSlice({
             state.Erreur ="email or password wrong"
          }else {
             state.psychiatre= action.payload
-            localStorage.setItem("psychiatre", JSON.stringify(action.payload))
-
-          };
+            localStorage.setItem("user", JSON.stringify(action.payload))
+            localStorage.setItem("userType", "psy");
+           };
           state.status = "Success";
         },
         [checkPsy.rejected] : (state, action) =>{

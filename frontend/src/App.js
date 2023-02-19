@@ -3,11 +3,8 @@ import './App.css'
 import Main from './components/Main/Main';
 import {BrowserRouter , Routes,Route } from 'react-router-dom';
 import Header from './components/Header/Header';
-
-
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
-
 
 import SideBar from './components/profile_User/Sidebar/SideBar';
 import Chat from './components/profile_User/Sidebar/ProfilePages/message/Messages';
@@ -17,6 +14,7 @@ import PsyInscription from './components/PsyInscription/PsyInscription';
 import LoginPsy from './components/PsyInscription/LoginPsy';
 import Questionnaire from './components/Questionnaire/Questionnaire';
 import Hellopage from './components/Questionnaire/HelloPage/Hellopage';
+import Information from './components/profile_User/Sidebar/ProfilePages/information/Information';
 import Blog from './components/Blog/Blog';
 import SinglePost from './components/Blog/SinglePost/SinglePost';
 import Write from './components/ProfilePsy/psyPages/Write/Write';
@@ -24,42 +22,58 @@ import SideBarPsy from './components/ProfilePsy/SidebarPsy/SidebarPsy';
 import PsyList from './components/profile_User/Sidebar/ProfilePages/psyList/PsyList';
 import Request from './components/ProfilePsy/psyPages/request/Request';
 import Setting from './components/ProfilePsy/psyPages/setting/setting';
+import AboutUs from './components/AboutUs/AboutUs';
+import { useState } from 'react';
 
 
 
 function App() {
+const[userType,setUserType] =useState (localStorage?.getItem("userType") ? localStorage?.getItem("userType"): "");
+  
+const handleNavigation = (role) => {
+    setUserType(role);
+};
   return (
     
     <div className="App">
     <BrowserRouter>
-     <SideBarPsy/>
-     <Routes>
+     
+     {userType === "" && (<Routes>
       <Route path="/" element={<Main/>} />
-      <Route path="/Header" element={<Header/>} />
-      <Route path="/Blog" element={<Blog/>} />
-      <Route path="/SinglePost" element={<SinglePost/>} />
-      
-      <Route path="/Signin" element={<Signin/>} />
+      <Route path='/AboutUs' element={<AboutUs/>} />
+      <Route path="/post/:id" element={<SinglePost/>} />
+      <Route path="/Signin" element={<Signin handleNavigation={handleNavigation}/>} />
       <Route path="/Signup" element={<Signup/>} />
       <Route path="/PsyInscription" element={<PsyInscription/>} />
-      <Route path="/LoginPsy" element={<LoginPsy/>} />
+      <Route path="/LoginPsy" element={<LoginPsy handleNavigation={handleNavigation}/>} />
       <Route path="/Questionnaire" element={<Questionnaire/>} />
       <Route path="/Hellopage" element={<Hellopage/>} />
-      <Route path="/SideBar" element={<SideBar/>} />
-      <Route path="/Chat" element={<Chat/>} />
-      <Route path="/PsyList" element={<PsyList/>} />
       
-      
-      <Route path="/Write" element={<Write/>} />
-      <Route path="/ChatPsy" element={<ChatPsy/>} />
-      <Route path="/Request" element={<Request/>} />
-      <Route path="/Setting" element={<Setting/>} />
-      
-      
-     </Routes>
+     </Routes>)
      
-   
-    </BrowserRouter>
+     }
+     
+     
+     {userType === "user" && (<SideBar handleNavigation={handleNavigation}>
+          <Routes>
+            <Route path="/PsyList" element={<PsyList handleNavigation={handleNavigation} />} />
+            <Route path="/Information" element={<Information/>} />
+            <Route path="/Chat" element={<Chat/>} />
+            <Route path="/Blog" element={<Blog/>} />
+            
+          </Routes>
+        </SideBar>)}
+        
+     {userType === "psy" && (<SideBarPsy handleNavigation={handleNavigation}>
+          <Routes>
+            <Route path="/Write" element={<Write/>} />
+            <Route path="/ChatPsy" element={<ChatPsy/>} />
+            <Route path="/Request" element={<Request/>} />
+            <Route path="/Setting" element={<Setting/>} />
+          </Routes>
+        </SideBarPsy>)}
+        
+     </BrowserRouter>
     </div>
     
   );

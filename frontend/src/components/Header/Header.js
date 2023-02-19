@@ -14,7 +14,9 @@ function Header() {
             <Link to="/Blog">
             <li>Blog</li>
             </Link>
-            <li>FAQ</li>
+            <Link to="/AboutUs">
+            <li>About us</li>
+            </Link>
         </ul>
     </div>
   )

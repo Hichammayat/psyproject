@@ -39,3 +39,25 @@
     font-weight: bolder;
     text-decoration: underline;
 }
+@media (max-width: 600px) {
+    .header {
+      flex-direction: column;
+    }
+    .header-menu {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .header-menu > li, a {
+      font-size: 1.2rem;
+    }
+    .header > img {
+      width: 7rem;
+      height: 3rem;
+    }
+    .header-menu > a:hover {
+      font-weight: bolder;
+      text-decoration: underline;
+    }
+  }
+  

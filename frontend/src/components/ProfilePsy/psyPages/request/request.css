@@ -1,5 +1,6 @@
 .request-div{
-    height: 100vh;
+  width: -webkit-fill-available;
+
 }
 
 h1,h2,h3{
@@ -33,7 +34,7 @@ h1,h2,h3{
     box-shadow: 5px 5px 10px black;
   }
   .top-card{
-    background-color: black;
+    background-color: rgb(70, 68, 68);
     text-align: center;
     border-radius: 5% 5% 0 0;
   }
