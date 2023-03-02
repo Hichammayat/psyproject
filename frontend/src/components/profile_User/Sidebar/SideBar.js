@@ -34,7 +34,7 @@ const routes = [
     icon: <AiOutlineUserAdd />,
   },
   {
-    path: "/saved",
+    path: "PostSaved",
     name: "Saved",
     icon: <AiFillHeart />,
   },
@@ -173,7 +173,7 @@ const SideBar = ({ children },props) =>{
           <div className="logOut">
             
             <div className="icon"><LogoutIcon/></div>
-            <div className="link_text" onClick={()=>signout()}>Deconnecter</div>
+            <div className="link_text" onClick={()=>signout()}>Se déconnecter</div>
             
           </div>
         </motion.div>

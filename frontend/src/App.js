@@ -16,10 +16,12 @@ import Questionnaire from './components/Questionnaire/Questionnaire';
 import Hellopage from './components/Questionnaire/HelloPage/Hellopage';
 import Information from './components/profile_User/Sidebar/ProfilePages/information/Information';
 import Blog from './components/Blog/Blog';
+import BlogPsy from './components/ProfilePsy/psyPages/BlogPsy/BlogPsy';
 import SinglePost from './components/Blog/SinglePost/SinglePost';
 import Write from './components/ProfilePsy/psyPages/Write/Write';
 import SideBarPsy from './components/ProfilePsy/SidebarPsy/SidebarPsy';
 import PsyList from './components/profile_User/Sidebar/ProfilePages/psyList/PsyList';
+import PostSaved from './components/profile_User/Sidebar/ProfilePages/PostSaved/PostSaved';
 import Request from './components/ProfilePsy/psyPages/request/Request';
 import Setting from './components/ProfilePsy/psyPages/setting/setting';
 import AboutUs from './components/AboutUs/AboutUs';
@@ -41,13 +43,14 @@ const handleNavigation = (role) => {
      {userType === "" && (<Routes>
       <Route path="/" element={<Main/>} />
       <Route path='/AboutUs' element={<AboutUs/>} />
-      <Route path="/post/:id" element={<SinglePost/>} />
+      <Route path="/post/:_id" element={<SinglePost/>} />
       <Route path="/Signin" element={<Signin handleNavigation={handleNavigation}/>} />
       <Route path="/Signup" element={<Signup/>} />
       <Route path="/PsyInscription" element={<PsyInscription/>} />
       <Route path="/LoginPsy" element={<LoginPsy handleNavigation={handleNavigation}/>} />
-      <Route path="/Questionnaire" element={<Questionnaire/>} />
+      <Route path="/Questionnaire" element={<Questionnaire handleNavigation={handleNavigation}/>} />
       <Route path="/Hellopage" element={<Hellopage/>} />
+      <Route path="/Blog" element={<Blog/>} />
       
      </Routes>)
      
@@ -60,6 +63,8 @@ const handleNavigation = (role) => {
             <Route path="/Information" element={<Information/>} />
             <Route path="/Chat" element={<Chat/>} />
             <Route path="/Blog" element={<Blog/>} />
+            <Route path="/PostSaved" element={<PostSaved/>} />
+            
             
           </Routes>
         </SideBar>)}
@@ -70,6 +75,7 @@ const handleNavigation = (role) => {
             <Route path="/ChatPsy" element={<ChatPsy/>} />
             <Route path="/Request" element={<Request/>} />
             <Route path="/Setting" element={<Setting/>} />
+            <Route path="/BlogPsy" element={<BlogPsy/>} />
           </Routes>
         </SideBarPsy>)}
         

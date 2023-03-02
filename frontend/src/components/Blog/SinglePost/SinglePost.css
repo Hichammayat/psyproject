@@ -36,17 +36,26 @@
 .info>span{
     font-weight: bold;
 }
+.info>p{
+  font-size: 18px;
+    text-align: start;
+    color: black;
+}
 .edit{
     display: flex;
           gap: 5px;
 }
-.user>h1 {
+
+.post-dtl>h1 {
     font-size: 42px;
-    color: #333;
+    color: black;
+
+
   }
- .content>p {
+ .post-dtl>p {
     text-align: justify;
     line-height: 30px;
+    color: black;
   }
   .menu {
     flex: 2;

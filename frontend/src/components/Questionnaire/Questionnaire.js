@@ -3,10 +3,11 @@ import './Questionnaire.css'
 import QuestionModal from '../../Modals/QuestionModals';
 import {useDispatch} from "react-redux"
 import { userAnswer } from '../../redux/Quest-reducer';
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 function Questionnaire (props) {
 	const handleNavigation = props.handleNavigation;
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const questions = [
 		{
@@ -67,19 +68,23 @@ function Questionnaire (props) {
 			{ThanksMsg ? (
 				<div className='score-section'>
 					<div className='question-section'>
-					<span>Merci pour vos reponses!
-                    vous allez maintenent avoir acces a la liste de tout les psychologues disponibles je vous invites a faire votre choix
+					<span>Merci d'avoir répondu aux questionnaires ! Nous sommes ravis de pouvoir mieux comprendre votre 
+						situation et de vous proposer des conseils personnalisés pour améliorer votre bien-être mental.
+						 Maintenant, nous vous invitons à choisir un psychologue dans la liste proposée pour débuter votre 
+						 accompagnement. Nos professionnels qualifiés sont là pour vous aider à atteindre vos objectifs et à
+						  trouver des solutions adaptées à votre situation.
 					</span>
 					</div>
 					<div className='answer-section'>
-					<Link to="/PsyList">
+					
 					<button className='btn' style={{backgroundColor:"black",color:"white"}}
 							   onClick={() => {
 								dispatch(userAnswer({id:getUserId._id,Answer : question}));
 								handleNavigation("user");
+								navigate('/PsyList');
 							  }}>valider
 					</button>
-					</Link>
+					
 					</div>
 				</div>
 			) : (

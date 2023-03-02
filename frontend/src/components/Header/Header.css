@@ -5,7 +5,7 @@
     padding-right: 5rem;
     
 }
-.header>img{
+.header>li,img{
     width: 10rem;
     height: 5rem;
 }

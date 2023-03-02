@@ -11,11 +11,9 @@ const ConversationSchema = new mongoose.Schema({
     ref : "psychiatres",
     required: true
   },
-  
-  
-  timestamps: true,
-  }
+  },
+  {timestamps: true}
 );
 
 const ConversationModel = mongoose.model("Conversation", ConversationSchema);
-export default ConversationModel;
+module.exports = ConversationModel

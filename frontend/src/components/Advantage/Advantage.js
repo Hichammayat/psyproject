@@ -27,12 +27,12 @@ function Advantage() {
                 <span>Suivez votre thérapie depuis le confort de votre maison</span>
             </div>
             <div className='details'>
-                <h1>Confidentialité garantie</h1>
-                <span>La confidentialité est notre priorité : votre suivi se limite à vous et votre psy et toutes vos données sont 100% sécurisées.</span>
+                <h1>Suivi personnalisé</h1>
+                <span>Votre psy vous accompagne au quotidien, avec des exercices interactifs sur-mesure pour régler votre problématique.</span>
             </div>
             <div className='details'>
-                <h1>Confort amélioré</h1>
-                <span>Suivez votre thérapie depuis le confort de votre maison</span>
+                <h1>Solution économique</h1>
+                <span>Economisez de l’argent avec l’abonnement à petit prix, et gagner du temps sans RDV et sans déplacement.</span>
             </div>
 
         </div>

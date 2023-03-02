@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: max-content;
+    width: 400px;
   }
   
   .Chat-container {
@@ -30,6 +30,10 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+  .Conversation{
+    display: flex;
+    flex-direction: column;
   }
   .ChatBox-container {
     
@@ -55,7 +59,7 @@
     padding: 1.5rem;
     overflow: scroll;
     background-color: white;
-    height: 475px;
+    height: 421px;
     border: solid
   }
   
@@ -131,6 +135,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 5px;
+    justify-content: space-between;
   }
   .Search>input {
     background-color: transparent;
@@ -154,4 +159,58 @@
       flex-direction: row;
       align-items: center;
       gap: 2rem;
+  }
+  .contact-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5em;
+    transition: 0.3s;
+  }
+  
+  .contact-section:hover{
+    background-color: #48494a;
+    cursor: pointer;
+  }
+  hr{
+    border: 1px solicontactd #494a4b;
+  }
+  
+  .list__item{
+    list-style: none;
+    
+    justify-content: space-between;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .relationship{
+    color: #fff;
+    height: 2rem;
+    text-align: center;
+    padding: .4em .5em;
+    border-radius: 100px;
+    border-bottom-left-radius: 0;
+    background: #48494a;
+  }
+  .relationship:hover{
+    color: #48494a;
+    height: 2rem;
+    text-align: center;
+    padding: .4em .5em;
+    border-radius: 100px;
+    border-bottom-left-radius: 0;
+    background: white
+  }
+  .name>span{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    height: 2rem;
+    text-align: center;
+    padding: .4em .5em;
+    border-radius: 100px;
+    border-bottom-left-radius: 0;
+    background: white;
   }

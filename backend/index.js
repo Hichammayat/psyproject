@@ -9,6 +9,7 @@ const psychiatreRouter = require("./routes/psychiatre")
 const PostRouter = require("./routes/Post")
 const NotifRouter = require("./routes/notifyer")
 const conversationRouter = require("./routes/conversation")
+const messageRouter = require("./routes/Message")
 
 
 
@@ -28,3 +29,4 @@ app.use(psychiatreRouter)
 app.use(PostRouter)
 app.use(NotifRouter)
 app.use(conversationRouter)
+app.use(messageRouter)

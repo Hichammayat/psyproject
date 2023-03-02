@@ -11,6 +11,12 @@ export const SendNotif = createAsyncThunk("Notification/SenNotif",async({Notif})
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
 })
+export const DLTNotif= createAsyncThunk("Notification/DLTNotif", async ({id})=>{
+  return axios.delete(`http://localhost:9000/deletNotif/${id}`,)
+  .then(res => {return res.data})
+  .catch(err => {return err.data.message})
+})
+
 
 
   const NotifSlice = createSlice({
@@ -49,6 +55,18 @@ export const SendNotif = createAsyncThunk("Notification/SenNotif",async({Notif})
         },
         [SendNotif.pending] : (state) =>{
            state.status = "Pending"
+        },
+        [DLTNotif.fulfilled]: (state, action) => {
+          state.Notification = [...state.Notification.filter(item=>item._id !== action.payload)];
+         
+          state.status = "Success";
+        },
+        [DLTNotif.rejected] : (state, action) =>{
+            state.Erreur = action.payload
+            state.status = "Rejected"
+        },
+        [DLTNotif.pending] : (state)=>{
+            state.status = "Pending"
         },
         
     }

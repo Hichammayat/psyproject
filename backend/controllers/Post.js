@@ -2,10 +2,13 @@ const PostModel = require("../modules/Post")
 
 exports.newPost= async (req, res) =>{
     const blog= req.body
+    
+    const image = req.files.image
     console.log(blog)
     try{
-         
-            const newBlog= new PostModel(blog)
+        const imagePath = `${__dirname}\\uploads\\${image.name}`
+        await image.mv(imagePath)
+        const newBlog = new PostModel(blog);
             const saved = await newBlog.save()
             console.log(saved)
             if (saved)res.send(saved)
@@ -24,3 +27,38 @@ exports.displayPost= async(req,res)=>{
 
     
 }
+exports.displayAllpost= async(req,res)=>{
+    try{
+        const allPosts = await PostModel.find();
+        console.log(allPosts);
+        res.send(allPosts);
+    } catch(err){
+        console.log(err.message);
+    }
+}
+exports.getPostDetails= async(req,res)=>{
+    const postId = req.params.id;
+  try {
+    const post = await PostModel.findById(postId);
+    console.log(post);
+    res.send( post );
+  } catch (err) {
+    console.log(err.message);
+    
+  }
+}
+exports.deletPost =async(req,res)=>{
+    const Post_id = req.params._id
+    
+  
+    try {
+        
+            let DLT = await PostModel.deleteOne({_id: Post_id})
+              console.log(DLT)
+  
+            res.send(Post_id)
+        
+    } catch (error) {console.error(error)
+        
+    }
+  }

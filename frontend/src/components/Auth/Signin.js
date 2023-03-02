@@ -22,15 +22,17 @@ const Signin = () => {
     res => {
       console.log(res.payload._id)
       if (typeof res.payload === 'object') {
-        handleNavigation("user")
+        
         
         dispatch(checkUserId(res.payload._id) )
         .then(
          res => {
           console.log(res.payload)
             if (typeof res.payload === 'object')
-             navigate('/Information');
-            else navigate('/Hellopage');
+             {handleNavigation("user")
+              navigate('/PostSaved');
+         }
+            else {navigate('/Hellopage')}
           }
         )
       }

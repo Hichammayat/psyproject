@@ -13,6 +13,10 @@ const Write = () => {
     const getPsychiatreId = JSON.parse(localStorage.getItem('user'))
     console.log(getPsychiatreId._id);
     const [newblog,setNewblog] =useState({...new PostModals(), psychiatre_id : getPsychiatreId._id});
+    const [image, setImage] = useState(null)
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]) // update state with selected image file
+      }
     console.log(newblog)
   return (
     <div className='add'>
@@ -37,7 +41,10 @@ const Write = () => {
                 <span>
                     <b style={{color:"black"}}>Visibility:</b>Public
                 </span>
-                <input style={{display:"none"}} type="file" id="file" name=""/>
+                <input  type="file" 
+                id="file" 
+                name="image"
+                 onChange={handleImageChange}></input>
                 <label htmlFor='file'>Upload Image</label>
                 <div className='buttons'>
                     <button className='btn-shild1' onClick={() =>dispatch(AddBlog({id:getPsychiatreId._id,Blog : newblog}))}>Save as a draft</button>

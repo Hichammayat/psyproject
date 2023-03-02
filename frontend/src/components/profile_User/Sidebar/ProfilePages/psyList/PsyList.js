@@ -7,13 +7,23 @@ import { SendNotif } from '../../../../../redux/notifyer'
 
 const PsyList = () => {
   const dispatch = useDispatch()
+  
   const getUserId = JSON.parse(localStorage.getItem('user'))
     useEffect(() =>{
     dispatch(GetPsychiatreList())
     },[])
-
+    const [selectedItem, setSelectedItem] = useState(null);  
 const psychiatreList = useSelector(state => state.PsyInscription.psychiatre)
-const [newNotif,setNewNotif] = useState()
+const handleValider = (item) => {
+  const notification = {
+    user_id: getUserId._id,
+    psychiatre_id: item._id
+  };
+  dispatch(SendNotif({ Notif: notification })).then(() => {
+    setSelectedItem(item);
+  });;
+};
+
 console.log(psychiatreList)
   return (
     <>
@@ -21,6 +31,7 @@ console.log(psychiatreList)
     <div className="List-profile">
       <div className="Profils">
       {
+        
         psychiatreList.map(item =>( 
           <div className="Profile" key={item._id} >
             <div className="img">
@@ -30,16 +41,24 @@ console.log(psychiatreList)
              <h1>{item.Firstname}  {item.Lastname}</h1>
              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!</p>
              <button
-             onClick={()=>{
-              setNewNotif(new NotificationModal(item._id,getUserId._id));
-              dispatch(SendNotif({Notif:newNotif}) )}}
-              /*onClick={()=>dispatch(SendNotif({user_id:getUserId._id,psychiatre_id:item._id}))}*/
+             onClick={() => handleValider(item)}
+              
               >choisir ce psychologue</button>
+            {selectedItem && selectedItem._id === item._id && (
+                  <div className="Alert">
+                    <p>félicitation pour votre choix !</p>
+                  </div>
+                  
+
+                )}
             </div>
           </div>
-          ))}
+          ))
+          }
+          
       </div>
     </div>
+    
     
     </>
   )

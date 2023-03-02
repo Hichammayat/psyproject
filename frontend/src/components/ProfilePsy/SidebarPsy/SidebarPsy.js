@@ -2,8 +2,6 @@ import { NavLink } from "react-router-dom";
 import { FaBars,FaUser } from "react-icons/fa";
 import { MdMessage,MdPostAdd } from "react-icons/md";
 import {  BiSearch } from "react-icons/bi";
-
-import { AiFillHeart} from "react-icons/ai";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -11,7 +9,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SideMenuPsy from "./SideMenuPsy";
 import './SidebarPsy.css'
-import {useNavigate} from "react-router-dom"
+
 
 const routes = [
  /* {
@@ -35,7 +33,7 @@ const routes = [
     icon: <MdPostAdd/>
   },
   {
-    path: "/Blog",
+    path: "/BlogPsy",
     name: "mes blogs",
     icon: <DynamicFeedIcon />,
   },
@@ -45,11 +43,7 @@ const routes = [
     icon: <NotificationsNoneIcon />,
   },
   
-  {
-    path: "/saved",
-    name: "Saved",
-    icon: <AiFillHeart />,
-  },
+ 
 ];
 
 const SideBarPsy = ({children},props) => {
@@ -89,7 +83,7 @@ const SideBarPsy = ({children},props) => {
       },
     },
   };
-  const navigate = useNavigate();
+  
   const signout = () => {
     localStorage.clear();
     window.location.href = '/';
@@ -185,7 +179,7 @@ const SideBarPsy = ({children},props) => {
             
             <div className="icon"><LogoutIcon/></div>
             <div className="logOut-btn" onClick={()=>signout()}>
-              Deconnecter
+            Se déconnecter
               </div>
             
           </div>

@@ -1,12 +1,9 @@
 class MessageModal{
-    constructor(sender = "", recipient="", chatId="", text=""){
+    constructor(sender = "", conversationId="", content=""){
         this.sender = sender;
-        this.recipient = recipient;
-        this.chatId = chatId;
-        this.text = text;
-
-    }
-
+        this.content = content;
+        this.conversationId = conversationId;
+     }
 }
 
 export default MessageModal;

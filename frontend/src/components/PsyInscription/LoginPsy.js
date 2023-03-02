@@ -23,7 +23,7 @@ function LoginPsy(props) {
 
           if(typeof res.payload === 'object') {
             handleNavigation("psy");
-            navigate('/Write')}
+            navigate('/BlogPsy')}
         }
       )
      };
@@ -35,7 +35,9 @@ function LoginPsy(props) {
         <div className='a-left'>
           
             <div className='webname'>
-            <img src='salut.png' alt=''/>
+            <video autoPlay loop muted playsInline className='video'>
+              <source src='salut (1).mp4'/>
+            </video>
             </div>
             
         </div>

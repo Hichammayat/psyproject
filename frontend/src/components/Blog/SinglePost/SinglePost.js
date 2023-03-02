@@ -4,19 +4,29 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Menu from '../Menu/Menu';
-import { useParams } from 'react-router-dom';
+import Header from '../../Header/Header';
+import { getPostDetail } from '../../../redux/Blog-reducer';
+import {useDispatch,useSelector} from "react-redux"
+import { useParams} from 'react-router-dom';
+import { useEffect } from 'react';
 
 const SinglePost = () => {
   
-  const { id } = useParams();
-  const post = post.find((post) => post.id === parseInt(id));
-  
+  const { _id } = useParams();
+  const dispatch = useDispatch()
+  useEffect(() =>{
+    dispatch(getPostDetail ({id:_id}))
+    },[])
+    const post = useSelector((state) => state.BlogStore.Blog);
+  console.log(post)
 
    
   return (
+    <>
+    
     <div className="single">
       <div className="content">
-        <img src={post.img} alt="" />
+        <img src="https://images.pexels.com/photos/6382633/pexels-photo-6382633.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
         <div className="user">
           <img
             src="DSC_2342.jpg"
@@ -36,11 +46,14 @@ const SinglePost = () => {
             </div>
          
         </div>
+        <div className='post-dtl'>
         <h1>{post.title}</h1>
-        <p>{post.desc}</p>     
+        <p>{post.desc}</p>  
+        </div>   
          </div>
       <Menu/>
     </div>
+    </>
   )
 }
 

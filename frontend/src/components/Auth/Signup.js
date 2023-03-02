@@ -4,7 +4,7 @@ import axios from'axios'
 import SignupModal from '../../Modals/SignupModals'
 
 import Footer from '../Footer/Footer'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 
 
@@ -12,7 +12,7 @@ function Authsec() {
   const [signup, setSignup] = useState(new SignupModal());
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
+  const navigate= useNavigate();
   const newAccount=()=>{
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const passwordRegex = /^(?=.*[A-Z])[a-zA-Z\d]{6,}$/;
@@ -118,6 +118,7 @@ function Authsec() {
          </div>
          <button onClick={() => {
              newAccount();
+             navigate('/Signin')
              
              
             }} className=' infoButton'>S'inscrire</button>

@@ -5,21 +5,17 @@ import psyReducer from './psy-reducer'
 import messageReducer from './message-reducer'
 import BlogReducer from './Blog-reducer'
 import NotifReducer from'./notifyer'
-
-
-
-
-
-
+import conversationReducer from './conversation-reducer'
 const Store = configureStore({
     reducer : {
         
         Auth : authReducer,
         Questionnaire : QuestReducer,
         PsyInscription : psyReducer,
-        Message : messageReducer,
-        Blog : BlogReducer,
+        MessageStore : messageReducer,
+        BlogStore: BlogReducer,
         Notification : NotifReducer,
+        ConversationStore : conversationReducer,
     }
 })
 

@@ -57,22 +57,13 @@ exports.GetPsychiatres= async (req, res) => {
 
 
 exports.getCv = async (req, res) =>{
-
-
-   
-    const file = req.files.resume
-
-
-
-    const path = `${__dirname}\\uploads\\${file.name}`
-
-    file.mv(path, (err)=>{
+ const file = req.files.resume
+ const path = `${__dirname}\\uploads\\${file.name}`
+ file.mv(path, (err)=>{
        if(err){
         console.log(err)
        }else{
         console.log("file created")
        }
     })
-
-
 }

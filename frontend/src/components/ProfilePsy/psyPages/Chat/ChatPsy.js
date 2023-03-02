@@ -1,30 +1,54 @@
-import React,{useState} from 'react'
-import './ChatPsy.css'
+import React,{useState,useEffect} from 'react';
+import './ChatPsy.css';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import{useDispatch} from'react-redux'
+import { MdMessage } from "react-icons/md";
+import {FaUser } from "react-icons/fa";
+import{useDispatch,useSelector} from'react-redux';
+import { getConversation } from '../../../../redux/conversation-reducer';
+import {addMessage} from '../../../../redux/message-reducer';
+import { getmessage } from '../../../../redux/message-reducer';
 import MessageModal from '../../../../Modals/MessageModals';
-import { newMessage } from '../../../../redux/message-reducer';
 
-import InputEmoji from 'react-input-emoji'
-import SideBarPsy from '../../SidebarPsy/SidebarPsy';
-
+import InputEmoji from 'react-input-emoji';
 
 
 function ChatPsy() {
-  const dispatch = useDispatch()
-    const[message,setMessage]=useState(new MessageModal("",))
+  const [newMessage, setNewMessage] = useState(new MessageModal());
+  const [selectedConversationId, setSelectedConversationId] = useState(null);
+  const dispatch = useDispatch();
+  const { conversations, users } = useSelector(
+    (state) => state.ConversationStore.Conversation
+  );
+  const message = useSelector((state) => state.MessageStore.Message);
+  console.log(message)
+  const getPsyId = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    dispatch(getConversation({ psychiatre_id: getPsyId._id }));
     
-    return (
+  }, []);
+  useEffect(()=>{
+    if (selectedConversationId) {
+      dispatch(getmessage({conversationID: selectedConversationId}))
+    }
+  },[selectedConversationId]);
+
+  const [chatHeaderName, setChatHeaderName] = useState("");
+  
+
+  const handleConversationClick = (conversation) => {
+    const user = users.find((user) => user._id === conversation.user_id);
+    const userName = user ? user.Firstname : "";
+    const lastname = user ? user.Lastname : "";
+    setChatHeaderName(`${userName} ${lastname}`);
+    setSelectedConversationId(conversation._id);
+  };
+   return (
   <>
-        
-    
-    
     <div className="Left-side-chat">
-    
-        
-        <div className="Chat-container">
+     <div className="Chat-container">
         <div className="Search">
           <input type="text" placeholder="#Explore"/>
           <div className="s-icon">
@@ -32,31 +56,52 @@ function ChatPsy() {
           </div>
       </div>
           <div className="Chat-list">
-           
-              <div>
-                
-                  
-              </div>
-            
-          </div>
-        </div>
-      </div>
-      <div className="ChatBox-container">
-        
+          <div className='Conversation'>
+      {conversations?conversations.map(conversation => {
+        const user = users.find(user => user._id === conversation.user_id);
+        const userName = user ? user.Firstname : "";
+        const lastname = user ? user.Lastname : "";
+        return (
           <>
-            {/* chat-header */}
-            <div className="chat-header" style={{backgroundColor:"black",color:"white"}}>
-              <div className="follower">
-                <div classname="header-name" style={{display:"flex",flexDirection:"row",alignItems:"center",gap:"3rem"}}>
-                  <img
-                    src="DSC_2342.jpg"
+					<div className="contact-section" key={conversation._id} onClick={() => handleConversationClick(conversation)}>
+						<li className="list__item">
+							
+							<p className="relationship">{userName} {lastname}</p>
+						</li>
+	          <li className="list__item">
+               <img
+                    src="profile pic.png"
                     alt="Profile"
                     className="followerImage"
                     style={{ width: "50px", height: "50px",borderRadius:"50%" }}
                   />
-                  <div className="name" style={{ fontSize: "1.5rem",fontWeight:"bold" }}>
-                    <span style={{font:"Bold"}}>
-                      hicham
+           <i className="fas fa-phone" ><MdMessage style={{ width: "30px", height: "30px", }}/></i>
+						</li>
+					</div>
+          <hr />
+          </>
+				 )
+      }):null}
+    </div>
+         </div>
+        </div>
+      </div>
+      {selectedConversationId && (
+      <div className="ChatBox-container" >
+        <>
+            {/* chat-header */}
+            <div className="chat-header" style={{backgroundColor:"black",color:"white"}}>
+              <div className="follower">
+                <div className="header-name" style={{display:"flex",flexDirection:"row",alignItems:"center",gap:"3rem"}}>
+                  <img
+                    src="profile pic.png"
+                    alt="Profile"
+                    className="followerImage"
+                    style={{ width: "50px", height: "50px",borderRadius:"50%" }}
+                  />
+                  <div className="name" >
+                    <span>
+                    {chatHeaderName}
                     </span>
                   </div>
                 </div>
@@ -71,38 +116,42 @@ function ChatPsy() {
             </div>
             {/* chat-body */}
             <div className="chat-body" >
-              
-                <>
-                  <div 
-                    className={""}
-                  >
-                    <span></span>{" "}
-                    <span></span>
-                  </div>
-                </>
-              
-            </div>
+            <>
+               {message.length > 0 ? (
+                  message.map((item) => (
+                    <div key={item._id}>
+                      {item.sender === getPsyId._id ?(
+                      <p style={{ color: 'black', textAlign: 'right' }}>{item.content}</p>) :
+                      (<p style={{ color: 'black', textAlign: 'left' }}>{item.content}</p>)
+                     }
+                    </div>
+                  ))
+                ) : (<p>No messages found.</p>)}
+            </>
+             </div>
             {/* chat-sender */}
             <div className="chat-sender">
               <div >+</div>
               <InputEmoji
-               /* onChange={(e) => setMessage({...message, text : e.target.value})}*/
+              onChange={(e)=> setNewMessage({
+                ...newMessage,
+                content: e,
+                conversationId: selectedConversationId._id,
+                sender: getPsyId._id,
+              })}
               />
-              <SendIcon style={{color:"white"}} onClick={() =>dispatch(newMessage())}/>
+              <SendIcon 
+              onClick={() =>dispatch(addMessage({Message:newMessage}))}
+              style={{color:"white"}}/>
               <AttachFileIcon style={{color:"white"}}
                 type="file"
                 name=""
                 id=""
-                
-                
-              />
+               />
             </div>{" "}
           </>
-         
-        
-     
       </div>
-      
+      )}
     </>
     )
 }

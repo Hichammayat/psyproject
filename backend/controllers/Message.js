@@ -1,6 +1,6 @@
 const MessageModel = require("../modules/MessagesSchema")
 
-exports.creatMessage = async (req, res) =>{
+exports.newmessage = async (req, res) =>{
     const message= req.body
     console.log(message)
     try{
@@ -13,3 +13,16 @@ exports.creatMessage = async (req, res) =>{
         
 
     }catch(err) {console.error(err)}}
+
+    exports.Getmessage = async (req, res) =>{
+        const id= req.params.conversationID
+        console.log(id)
+        try{
+             
+                const messageId= await MessageModel.find({conversationID:id})
+                
+                res.send(messageId)
+            
+            
+    
+        }catch(err) {console.error(err)}}
