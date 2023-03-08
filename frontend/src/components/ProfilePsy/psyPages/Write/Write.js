@@ -13,11 +13,17 @@ const Write = () => {
     const getPsychiatreId = JSON.parse(localStorage.getItem('user'))
     console.log(getPsychiatreId._id);
     const [newblog,setNewblog] =useState({...new PostModals(), psychiatre_id : getPsychiatreId._id});
-    const [image, setImage] = useState(null)
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]) // update state with selected image file
-      }
-    console.log(newblog)
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', newblog.image);
+        formData.append('title', newblog.title);
+        formData.append('desc', newblog.desc);
+        formData.append('psychiatre_id', newblog.psychiatre_id);
+
+        dispatch(AddBlog({ id: getPsychiatreId._id, formData: formData }));
+    };
   return (
     <div className='add'>
         
@@ -44,10 +50,10 @@ const Write = () => {
                 <input  type="file" 
                 id="file" 
                 name="image"
-                 onChange={handleImageChange}></input>
+                 onChange={(e)=> setNewblog({...newblog, image : e.target.files[0]})}></input>
                 <label htmlFor='file'>Upload Image</label>
                 <div className='buttons'>
-                    <button className='btn-shild1' onClick={() =>dispatch(AddBlog({id:getPsychiatreId._id,Blog : newblog}))}>Save as a draft</button>
+                    <button className='btn-shild1' onClick={(e) =>handleSubmit(e)}>Save as a draft</button>
                     <button className='ntm-shild2'>Update</button>
                 </div>
             </div>

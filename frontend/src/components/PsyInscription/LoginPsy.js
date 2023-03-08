@@ -70,7 +70,11 @@ function LoginPsy(props) {
             
 
         </div>
-        
+        <div>
+            <Link to="/PsyInscription">
+            <span className='span-form' style={{color:"white"}} >Vous n'avez pas de compte? Inscrivez-vous.</span>
+            </Link>
+        </div>
         
         <button 
         onClick={() => {

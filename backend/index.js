@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const fileupload = require("express-fileupload")
 const mongoose  = require("mongoose");
+const path = require('path');
 
 const authRouter = require("./routes/auth");
 const questionnaireRouter = require("./routes/questionnaire")
@@ -22,6 +23,7 @@ app.use(express.json())
 app.use(fileupload())
 app.use(cors())
 mongoose.connect("mongodb://localhost/psyapp")
+app.use(express.static('uploads/blogs'))
 
 app.use(authRouter)
 app.use(questionnaireRouter)
@@ -30,3 +32,6 @@ app.use(PostRouter)
 app.use(NotifRouter)
 app.use(conversationRouter)
 app.use(messageRouter)
+app.get('/', (req, res) => {
+    res.send(true)
+})

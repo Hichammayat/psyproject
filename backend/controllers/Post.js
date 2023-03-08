@@ -1,4 +1,5 @@
-const PostModel = require("../modules/Post")
+const PostModel = require("../modules/Post");
+const fs = require('fs');
 
 exports.newPost= async (req, res) =>{
     const blog= req.body
@@ -6,9 +7,18 @@ exports.newPost= async (req, res) =>{
     const image = req.files.image
     console.log(blog)
     try{
-        const imagePath = `${__dirname}\\uploads\\${image.name}`
-        await image.mv(imagePath)
-        const newBlog = new PostModel(blog);
+      const imageName = blog.title;
+         
+        const blogFolderPath = `${__dirname}/uploads/blogs/${imageName}/`;
+        if (!fs.existsSync(blogFolderPath)) {
+          fs.mkdirSync(blogFolderPath, { recursive: true });
+        }
+        const imagePathAtback = `${blogFolderPath}${image.name}`
+        const imagePath = `${image.name}`;
+        await image.mv(imagePathAtback)
+        blog.photo = imagePath;
+        const newBlog = new PostModel({...blog,
+          photo: imagePath});
             const saved = await newBlog.save()
             console.log(saved)
             if (saved)res.send(saved)

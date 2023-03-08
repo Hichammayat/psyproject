@@ -37,3 +37,24 @@ exports.login = async (req, res) =>{
         console.error(err.message)
     }
 }
+
+exports.updateUser = async (req, res) => {
+    const { id } = req.params; // id of the user to be updated
+    const userUpdates = req.body; // the new information to update the user with
+  
+    try {
+      const updatedUser = await UserModel.findByIdAndUpdate(id, userUpdates, {
+        new: true, // return the updated document
+        runValidators: true, // validate the update against the model's schema
+      });
+  
+      if (!updatedUser) {
+        return res.status(404).send('User not found');
+      }
+  
+      res.send(updatedUser);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  };

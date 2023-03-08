@@ -12,11 +12,9 @@ export const getPostid = createAsyncThunk("posts/getPostid", async ({psychiatre_
         return err.data.message;
       });
   });
-  export const AddBlog = createAsyncThunk("posts/Add", async ({Blog,id,image}) =>{
-    const formData = new FormData()
-          formData.append("Blog", Blog)
-          formData.append("image", image)
-    return axios.post(`http://localhost:9000/Post/${id}`, formData)
+  export const AddBlog = createAsyncThunk("posts/Add", async ({formData,id}) =>{
+    
+    return axios.post(`http://localhost:9000/Post/${id}`,formData)
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
   })
