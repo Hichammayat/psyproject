@@ -13,7 +13,7 @@ export const GetUserInfo = createAsyncThunk("Notification/GetUserInfo",async({id
   .catch(err => {return err.data.message})
 })
 export const updateProfile  = createAsyncThunk("User/updateProfile",async({id,userUpdates})=>{
-  return axios.post(`http://localhost:9000/updateUser${id}`,userUpdates)
+  return axios.put(`http://localhost:9000/updateUser${id}`,userUpdates)
   .then(res => {return res.data})
   .catch(err => {return err.data.message})
 })

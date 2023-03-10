@@ -50,7 +50,7 @@ const Blog = () => {
            
           <div className="post" key={post._id}>
             <div className="img-Blog">
-              <img src="https://images.pexels.com/photos/6382633/pexels-photo-6382633.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+              <img src={'http://localhost:9000/'+post.title+'/'+post.photo} alt="" />
             </div>
             <div className="post-content">
               

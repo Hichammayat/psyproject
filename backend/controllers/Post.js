@@ -1,31 +1,31 @@
 const PostModel = require("../modules/Post");
 const fs = require('fs');
 
-exports.newPost= async (req, res) =>{
-    const blog= req.body
-    
-    const image = req.files.image
-    console.log(blog)
-    try{
-      const imageName = blog.title;
-         
-        const blogFolderPath = `${__dirname}/uploads/blogs/${imageName}/`;
-        if (!fs.existsSync(blogFolderPath)) {
-          fs.mkdirSync(blogFolderPath, { recursive: true });
-        }
-        const imagePathAtback = `${blogFolderPath}${image.name}`
-        const imagePath = `${image.name}`;
-        await image.mv(imagePathAtback)
-        blog.photo = imagePath;
-        const newBlog = new PostModel({...blog,
-          photo: imagePath});
-            const saved = await newBlog.save()
-            console.log(saved)
-            if (saved)res.send(saved)
-        else res.send("post not inserted")
-        
+exports.newPost = async (req, res) => {
+  const blog = req.body;
 
-    }catch(err) {console.error(err)}}
+  const image = req.files.image;
+  console.log(blog);
+  try {
+    const imageName = blog.title;
+
+    const blogFolderPath = `./uploads/blogs/${imageName}/`;
+    if (!fs.existsSync(blogFolderPath)) {
+      fs.mkdirSync(blogFolderPath, { recursive: true });
+    }
+    const imagePathAtback = `${blogFolderPath}${image.name}`;
+    const imagePath = `${image.name}`;
+    await image.mv(imagePathAtback);
+    blog.photo = imagePath;
+    const newBlog = new PostModel({ ...blog, photo: imagePath });
+    const saved = await newBlog.save();
+    console.log(saved);
+    if (saved) res.send(saved);
+    else res.send("post not inserted");
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 exports.displayPost= async(req,res)=>{
     const id =req.params.psychiatre_id

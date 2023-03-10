@@ -26,7 +26,7 @@ const SinglePost = () => {
     
     <div className="single">
       <div className="content">
-        <img src="https://images.pexels.com/photos/6382633/pexels-photo-6382633.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+        <img src={'http://localhost:9000/'+post.title+'/'+post.photo} alt="" />
         <div className="user">
           <img
             src="DSC_2342.jpg"

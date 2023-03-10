@@ -1,4 +1,5 @@
 const PsychiatreModel = require("../modules/Psychiatreschema");
+const fs = require('fs');
 
 exports.postuler = async (req, res) =>{
     const psychiatre= req.body
@@ -67,3 +68,52 @@ exports.getCv = async (req, res) =>{
        }
     })
 }
+
+exports.updatePsy = async (req, res) => {
+    const  psyId  = req.params.id; // id of the user to be updated
+    const userUpdates = req.body; // the new information to update the user with
+  
+    try {
+      const result = await PsychiatreModel.findOne( {_id:psyId})
+         
+  
+      if (result) {
+        await PsychiatreModel.updateOne({ _id: psyId }, userUpdates);
+        res.status(200).json({ message: 'Votre profil a été mis à jour avec succès.' });
+      } else {
+        res.status(404).json({ message: 'Psychiatre non trouvé.' });
+      }
+    } 
+      
+     catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  };
+
+
+  exports.updateProfilePic = async(req,res) =>{
+    let psyId = req.params.id;
+  const file = req.files.image;
+  const path = `uploads/avatars/${psyId}`;
+  if (!fs.existsSync(path)) {
+    fs.mkdirSync(path, { recursive: true });
+  }
+  const imagePathAtback = `${path}/${file.name}`;
+  const imagePath = `${file.name}`;
+
+  file.mv(imagePathAtback, async (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      await PsychiatreModel.updateOne(
+        {_id: psyId},
+        {picturePath: imagePath}
+      );
+      console.log(
+        `Psy with ID: ${psyId} uploaded a file: ${file.name}`
+      );
+      res.send('Profile picture updated successfully');
+    }
+  });
+  }

@@ -22,7 +22,7 @@ function BlogPsy() {
            
           <div className="post" key={post._id}>
             <div className="img-Blog">
-              <img src={'http://localhost:9000/'+post.title+'/'+post.photo} alt="" />
+              <img src={'http://localhost:9000/blogs/'+post.title+'/'+post.photo} alt="" />
             </div>
             <div className="post-content">
               

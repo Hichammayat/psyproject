@@ -14,6 +14,16 @@ export const GetPsychiatreList = createAsyncThunk('Psy/GetPsychiatreList', async
   .then(res => {return res.data})
   .catch(err => {return err.data.message})
 })
+export const updateProfilePsy  = createAsyncThunk("Psy/updateProfilePsy",async({id,userUpdates})=>{
+  return axios.put(`http://localhost:9000/updatePsy/${id}`,userUpdates)
+  .then(res => {return res.data})
+  .catch(err => {return err.data.message})
+})
+export const uploadImage = createAsyncThunk('Psy/uploadImage', async({id,image})=> {
+  return axios.post(`http://localhost:9000/updateProfilePic/${id}`, image)
+  .then((res) => {return res.data})
+  .catch((err) => {console.error(err)})
+})
 const PsyApplySlice = createSlice({
     name: "PsyInscription",
     initialState :  {
@@ -56,7 +66,18 @@ const PsyApplySlice = createSlice({
         [GetPsychiatreList.pending] : (state) =>{
            state.status = "Pending"
         },
-    }
+        [updateProfilePsy.fulfilled] : (state, action)=>{
+          state.psychiatre = action.payload;
+          state.status = "Success";
+        },
+        [updateProfilePsy.rejected] : (state, action) =>{
+          state.Erreur = action.payload
+          state.status = "Rejected"
+        },
+        [updateProfilePsy.pending] : (state) =>{
+         state.status = "Pending"
+        },
+       }
   });
 
   export default PsyApplySlice.reducer;
